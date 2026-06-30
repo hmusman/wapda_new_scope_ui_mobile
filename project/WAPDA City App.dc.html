@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin:0; padding:0; }
+  body { font-family:'Poppins', system-ui, sans-serif; background:#2b2620; }
+  .theme-light {
+    --bg:#F2EDE4; --surface:#FFFFFF; --surface-2:#FBF7F0; --primary:#C0512B; --primary-dark:#9A3D1E;
+    --primary-tint:#F6E7DE; --maroon:#5E2419; --success:#5C8A6A; --success-tint:#E6EFE7; --amber:#B7822A;
+    --amber-tint:#F5EAD3; --danger:#BF3B2B; --danger-tint:#F6E1DC; --ink:#2A2420; --mid:#6E6155; --light:#A99B8B;
+    --border:#E8DFD0; --gold:#A8823C; --shadow:rgba(70,45,25,.08); --nav-idle:#B2A493;
+    --grad:linear-gradient(142deg,#5E2419 0%,#A8431F 52%,#C76A31 100%);
+  }
+  .theme-dark {
+    --bg:#19150F; --surface:#241E17; --surface-2:#2C261D; --primary:#D97757; --primary-dark:#C0512B;
+    --primary-tint:#3A2920; --maroon:#E7A88E; --success:#74AC8A; --success-tint:#22302A; --amber:#D6A24C;
+    --amber-tint:#332817; --danger:#E16B57; --danger-tint:#3A201B; --ink:#F1E9DD; --mid:#B4A795; --light:#7E7160;
+    --border:#393125; --gold:#CBA660; --shadow:rgba(0,0,0,.45); --nav-idle:#7E7160;
+    --grad:linear-gradient(142deg,#2A130C 0%,#7E3318 52%,#A85A30 100%);
+  }
+  .scr { scrollbar-width:none; }
+  .scr::-webkit-scrollbar { display:none; }
+  @keyframes splashIn { from{ opacity:0; transform:scale(.82);} to{ opacity:1; transform:scale(1);} }
+  @keyframes fadeUp { from{ opacity:0; transform:translateY(12px);} to{ opacity:1; transform:translateY(0);} }
+  @keyframes fadeIn { from{ opacity:0;} to{ opacity:1;} }
+  @keyframes slideUp { from{ transform:translateY(10px);} to{ transform:translateY(0);} }
+  @keyframes dotPulse { 0%,100%{ opacity:.3; transform:translateY(0);} 50%{ opacity:1; transform:translateY(-4px);} }
+  @keyframes sosPulse { 0%{ box-shadow:0 0 0 0 rgba(191,59,43,.5);} 70%{ box-shadow:0 0 0 26px rgba(191,59,43,0);} 100%{ box-shadow:0 0 0 0 rgba(191,59,43,0);} }
+  @keyframes spin { to{ transform:rotate(360deg);} }
+  @keyframes shimmer { 0%{ background-position:-200px 0;} 100%{ background-position:200px 0;} }
+  .ld { animation:dotPulse 1.1s infinite; }
+  .ld:nth-child(2){ animation-delay:.18s; } .ld:nth-child(3){ animation-delay:.36s; }
+  .screen-enter { animation:slideUp .3s ease; }
+  .press:active { transform:scale(.97); }
+</style>
+</helmet>
+<div class="app {{ themeClass }}" style="min-height:100vh; width:100%; background:#2b2620; display:flex; align-items:flex-start; justify-content:center; gap:34px; padding:40px 28px; font-family:'Poppins',sans-serif;">
+
+  <!-- ===================== PHONE ===================== -->
+  <div style="position:relative; flex:0 0 auto;">
+    <div style="width:392px; height:812px; background:#0c0a08; border-radius:52px; padding:11px; box-shadow:0 40px 90px rgba(0,0,0,.55), inset 0 0 0 2px #2a2620; position:sticky; top:40px;">
+      <div class="app {{ themeClass }}" style="position:relative; width:100%; height:100%; border-radius:42px; overflow:hidden; background:var(--bg);">
+
+        <!-- status bar -->
+        <div style="position:absolute; top:0; left:0; right:0; height:48px; z-index:60; display:flex; align-items:center; justify-content:space-between; padding:14px 30px 0; pointer-events:none; color:{{ statusColor }}; font-size:14px; font-weight:600;">
+          <span>9:41</span>
+          <div style="position:absolute; left:50%; top:11px; transform:translateX(-50%); width:104px; height:26px; background:#0c0a08; border-radius:14px;"></div>
+          <div style="display:flex; align-items:center; gap:6px;">
+            <svg width="17" height="12" viewBox="0 0 24 24" fill="currentColor"><rect x="1" y="14" width="3.5" height="7" rx="1"/><rect x="6.5" y="10" width="3.5" height="11" rx="1"/><rect x="12" y="6" width="3.5" height="15" rx="1"/><rect x="17.5" y="2" width="3.5" height="19" rx="1"/></svg>
+            <svg width="17" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4C7.5 4 3.7 5.9 1 8.9l11 13L23 8.9C20.3 5.9 16.5 4 12 4z" opacity="1"/></svg>
+            <svg width="24" height="12" viewBox="0 0 28 14" fill="none"><rect x="1" y="1" width="22" height="12" rx="3" stroke="currentColor" stroke-width="1.4" opacity=".5"/><rect x="3" y="3" width="16" height="8" rx="1.5" fill="currentColor"/><rect x="24.5" y="4.5" width="2" height="5" rx="1" fill="currentColor" opacity=".5"/></svg>
+          </div>
+        </div>
+
+        <!-- content -->
+        <div class="scr" style="position:absolute; inset:0; overflow-y:auto; overflow-x:hidden;">
+
+          <!-- ========== SPLASH ========== -->
+          <sc-if value="{{ s_splash }}">
+            <div style="position:absolute; inset:0; background:var(--grad); display:flex; flex-direction:column; align-items:center; justify-content:center;">
+              <div style="width:148px; height:148px; border-radius:38px; background:#fff; display:flex; align-items:center; justify-content:center; box-shadow:0 22px 55px rgba(0,0,0,.32); animation:splashIn .65s cubic-bezier(.2,.8,.2,1); overflow:hidden;">
+                <img src="assets/logo.png" alt="WAPDA City" style="width:124px; height:124px; object-fit:contain;"/>
+              </div>
+              <div style="text-align:center; margin-top:28px; animation:fadeUp .55s .25s both;">
+                <div style="font-size:25px; font-weight:700; color:#fff; letter-spacing:.3px;">WAPDA City</div>
+                <div style="font-size:14px; color:rgba(255,255,255,.82); margin-top:5px; font-weight:300; letter-spacing:.4px;">Your Society. Connected.</div>
+              </div>
+              <div style="position:absolute; bottom:74px; display:flex; gap:8px;">
+                <span class="ld" style="width:8px; height:8px; border-radius:50%; background:#fff;"></span>
+                <span class="ld" style="width:8px; height:8px; border-radius:50%; background:#fff;"></span>
+                <span class="ld" style="width:8px; height:8px; border-radius:50%; background:#fff;"></span>
+              </div>
+              <div style="position:absolute; bottom:38px; font-size:11px; color:rgba(255,255,255,.6); letter-spacing:.3px;">Powered by Optimum Tech</div>
+            </div>
+          </sc-if>
+
+          <!-- ========== WELCOME ========== -->
+          <sc-if value="{{ s_welcome }}">
+            <div class="screen-enter" style="min-height:100%; display:flex; flex-direction:column;">
+              <div style="background:var(--grad); padding:96px 28px 56px; border-bottom-left-radius:34px; border-bottom-right-radius:34px; position:relative;">
+                <div style="position:absolute; top:54px; right:22px; background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.28); color:#fff; font-size:12px; font-weight:600; padding:7px 13px; border-radius:20px;" data-comment-anchor="f76daba817-div">EN · اردو</div>
+                <div style="width:80px; height:80px; border-radius:22px; background:#fff; display:flex; align-items:center; justify-content:center; box-shadow:0 12px 30px rgba(0,0,0,.22); overflow:hidden;">
+                  <img src="assets/logo.png" alt="" style="width:68px; height:68px; object-fit:contain;"/>
+                </div>
+                <div style="font-size:28px; font-weight:700; color:#fff; margin-top:26px; line-height:1.2;">Welcome to<br>WAPDA City</div>
+                <div style="font-size:14.5px; color:rgba(255,255,255,.85); margin-top:12px; font-weight:300; line-height:1.6; max-width:280px;">The official resident app for WAPDA City, Faisalabad. Pay charges, raise complaints, stay connected with your community.</div>
+              </div>
+              <div style="flex:1; padding:36px 26px 30px; display:flex; flex-direction:column; justify-content:flex-end;">
+                <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:34px;">
+                  <div style="text-align:center;"><div style="font-size:20px; font-weight:700; color:var(--primary);">12</div><div style="font-size:11px; color:var(--mid); margin-top:2px;">Features</div></div>
+                  <div style="text-align:center; border-left:1px solid var(--border); border-right:1px solid var(--border);"><div style="font-size:20px; font-weight:700; color:var(--primary);">100%</div><div style="font-size:11px; color:var(--mid); margin-top:2px;">Secure</div></div>
+                  <div style="text-align:center;"><div style="font-size:20px; font-weight:700; color:var(--primary);">24/7</div><div style="font-size:11px; color:var(--mid); margin-top:2px;">Support</div></div>
+                </div>
+                <button data-screen="login" onClick="{{ nav }}" class="press" style="width:100%; background:var(--grad); color:#fff; border:none; padding:16px; border-radius:14px; font-size:14px; font-weight:600; font-family:inherit; letter-spacing:.4px; box-shadow:0 10px 24px var(--shadow); cursor:pointer;">LOGIN</button>
+                <button data-screen="register" onClick="{{ nav }}" class="press" style="width:100%; background:transparent; color:var(--primary); border:1.6px solid var(--primary); padding:15px; border-radius:14px; font-size:14px; font-weight:600; font-family:inherit; letter-spacing:.4px; margin-top:13px; cursor:pointer;">CREATE ACCOUNT</button>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- ========== LOGIN ========== -->
+          <sc-if value="{{ s_login }}">
+            <div class="screen-enter" style="min-height:100%; padding:70px 26px 30px; display:flex; flex-direction:column;">
+              <div style="width:64px; height:64px; border-radius:18px; background:var(--surface); display:flex; align-items:center; justify-content:center; box-shadow:0 6px 18px var(--shadow); overflow:hidden; border:1px solid var(--border);">
+                <img src="assets/logo.png" alt="" style="width:54px; height:54px; object-fit:contain;"/>
+              </div>
+              <div style="font-size:26px; font-weight:700; color:var(--ink); margin-top:26px;">Welcome Back</div>
+              <div style="font-size:14px; color:var(--mid); margin-top:6px;">Sign in to continue to your society</div>
+
+              <div style="margin-top:30px;">
+                <label style="font-size:12px; font-weight:600; color:var(--primary); margin-left:2px;">Phone Number</label>
+                <div style="display:flex; align-items:center; gap:8px; margin-top:8px; background:var(--surface); border:1.5px solid var(--primary); border-radius:12px; padding:0 14px; box-shadow:0 2px 8px var(--shadow);">
+                  <span style="font-size:14.5px; color:var(--ink); font-weight:600; padding-right:9px; border-right:1px solid var(--border); white-space:nowrap;">🇵🇰 +92</span>
+                  <input value="3xx xxxxxxx" readonly style="flex:1; border:none; outline:none; background:transparent; padding:15px 0; font-size:14.5px; font-family:inherit; color:var(--light);"/>
+                </div>
+              </div>
+              <div style="margin-top:18px;">
+                <label style="font-size:12px; font-weight:600; color:var(--mid); margin-left:2px;">Password</label>
+                <div style="display:flex; align-items:center; gap:10px; margin-top:8px; background:var(--surface); border:1.5px solid var(--border); border-radius:12px; padding:0 14px;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--light)" stroke-width="1.8"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                  <input value="••••••••" readonly type="password" style="flex:1; border:none; outline:none; background:transparent; padding:15px 0; font-size:14.5px; font-family:inherit; color:var(--ink); letter-spacing:2px;"/>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--light)" stroke-width="1.8"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+                </div>
+              </div>
+              <div style="text-align:right; margin-top:12px;"><span style="font-size:13px; color:var(--primary); font-weight:600;">Forgot Password?</span></div>
+
+              <button data-screen="home" onClick="{{ nav }}" class="press" style="width:100%; background:var(--grad); color:#fff; border:none; padding:16px; border-radius:14px; font-size:14px; font-weight:600; font-family:inherit; letter-spacing:.5px; margin-top:26px; box-shadow:0 10px 24px var(--shadow); cursor:pointer;">LOGIN</button>
+
+              <div style="display:flex; align-items:center; gap:12px; margin:26px 0;">
+                <div style="flex:1; height:1px; background:var(--border);"></div>
+                <span style="font-size:12px; color:var(--light);">or login with</span>
+                <div style="flex:1; height:1px; background:var(--border);"></div>
+              </div>
+              <div style="display:flex; gap:12px;">
+                <div class="press" style="flex:1; text-align:center; padding:13px; border:1.5px solid var(--border); border-radius:12px; background:var(--surface); font-size:13px; font-weight:600; color:var(--ink);">CNIC</div>
+                <div class="press" style="flex:1; text-align:center; padding:13px; border:1.5px solid var(--border); border-radius:12px; background:var(--surface); font-size:13px; font-weight:600; color:var(--ink);">Biometric</div>
+              </div>
+
+              <div style="text-align:center; margin-top:auto; padding-top:30px; font-size:13.5px; color:var(--mid);">Don't have an account? <span data-screen="register" onClick="{{ nav }}" style="color:var(--primary); font-weight:700;">Register</span></div>
+            </div>
+          </sc-if>
+
+          <!-- ========== REGISTER ========== -->
+          <sc-if value="{{ s_register }}">
+            <div class="screen-enter" style="min-height:100%; padding:62px 26px 30px;">
+              <div style="display:flex; align-items:center; gap:14px;">
+                <div onClick="{{ back }}" class="press" style="width:40px; height:40px; border-radius:12px; background:var(--surface); border:1px solid var(--border); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></div>
+                <div style="flex:1;">
+                  <div style="display:flex; gap:6px;">
+                    <div style="flex:1; height:5px; border-radius:3px; background:var(--primary);"></div>
+                    <div style="flex:1; height:5px; border-radius:3px; background:var(--border);"></div>
+                    <div style="flex:1; height:5px; border-radius:3px; background:var(--border);"></div>
+                  </div>
+                  <div style="font-size:11px; color:var(--mid); margin-top:6px;">Step 1 of 3 · Your Details</div>
+                </div>
+              </div>
+              <div style="font-size:24px; font-weight:700; color:var(--ink); margin-top:24px;">Create Account</div>
+              <div style="font-size:13.5px; color:var(--mid); margin-top:5px;">Enter your details to register with the MC</div>
+
+              <div style="margin-top:24px; display:flex; flex-direction:column; gap:15px;">
+                <div><label style="font-size:12px; font-weight:600; color:var(--mid); margin-left:2px;">Full Name</label><input value="Ahsan Raza" readonly style="width:100%; margin-top:7px; border:1.5px solid var(--border); border-radius:12px; padding:14px; font-size:14px; font-family:inherit; background:var(--surface); color:var(--ink); outline:none;"/></div>
+                <div><label style="font-size:12px; font-weight:600; color:var(--mid); margin-left:2px;">CNIC Number</label><input value="33100-1234567-8" readonly style="width:100%; margin-top:7px; border:1.5px solid var(--border); border-radius:12px; padding:14px; font-size:14px; font-family:inherit; background:var(--surface); color:var(--ink); outline:none;"/></div>
+                <div style="display:flex; gap:12px;">
+                  <div style="flex:1;"><label style="font-size:12px; font-weight:600; color:var(--mid); margin-left:2px;">House / Plot</label><input value="H-247, Block C" readonly style="width:100%; margin-top:7px; border:1.5px solid var(--border); border-radius:12px; padding:14px; font-size:14px; font-family:inherit; background:var(--surface); color:var(--ink); outline:none;"/></div>
+                </div>
+                <div><label style="font-size:12px; font-weight:600; color:var(--mid); margin-left:2px;">Email <span style="color:var(--light); font-weight:400;">(optional)</span></label><input value="ahsan@email.com" readonly style="width:100%; margin-top:7px; border:1.5px solid var(--border); border-radius:12px; padding:14px; font-size:14px; font-family:inherit; background:var(--surface); color:var(--ink); outline:none;"/></div>
+              </div>
+
+              <div style="display:flex; align-items:flex-start; gap:9px; margin-top:18px; background:var(--amber-tint); border-radius:12px; padding:12px 14px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" style="flex-shrink:0; margin-top:1px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                <span style="font-size:12px; color:var(--mid); line-height:1.5;">Your plot number must match MC records. Registration is verified by the Management Committee.</span>
+              </div>
+
+              <button data-screen="otp" onClick="{{ nav }}" class="press" style="width:100%; background:var(--grad); color:#fff; border:none; padding:16px; border-radius:14px; font-size:14px; font-weight:600; font-family:inherit; letter-spacing:.5px; margin-top:24px; box-shadow:0 10px 24px var(--shadow); cursor:pointer;">NEXT</button>
+            </div>
+          </sc-if>
+
+          <!-- ========== OTP ========== -->
+          <sc-if value="{{ s_otp }}">
+            <div class="screen-enter" style="min-height:100%; padding:62px 26px 30px; display:flex; flex-direction:column;">
+              <div onClick="{{ back }}" class="press" style="width:40px; height:40px; border-radius:12px; background:var(--surface); border:1px solid var(--border); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></div>
+              <div style="width:60px; height:60px; border-radius:18px; background:var(--primary-tint); display:flex; align-items:center; justify-content:center; margin-top:30px;">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+              </div>
+              <div style="font-size:24px; font-weight:700; color:var(--ink); margin-top:22px;">Verify Phone Number</div>
+              <div style="font-size:14px; color:var(--mid); margin-top:8px; line-height:1.5;">Enter the 6-digit code sent to<br><span style="color:var(--ink); font-weight:600;">+92 3xx xxxxxxx</span></div>
+
+              <div style="display:flex; gap:10px; margin-top:34px;">
+                <div style="flex:1; aspect-ratio:1; border:2px solid var(--primary); border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:700; color:var(--ink); background:var(--surface);">4</div>
+                <div style="flex:1; aspect-ratio:1; border:2px solid var(--primary); border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:700; color:var(--ink); background:var(--surface);">9</div>
+                <div style="flex:1; aspect-ratio:1; border:2px solid var(--primary); border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:700; color:var(--ink); background:var(--surface);">2</div>
+                <div style="flex:1; aspect-ratio:1; border:2px solid var(--primary); border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:700; color:var(--ink); background:var(--surface);">7</div>
+                <div style="flex:1; aspect-ratio:1; border:2px solid var(--border); border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:700; color:var(--light); background:var(--surface);"></div>
+                <div style="flex:1; aspect-ratio:1; border:2px solid var(--border); border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:700; color:var(--light); background:var(--surface);"></div>
+              </div>
+
+              <div style="text-align:center; margin-top:26px; font-size:13.5px; color:var(--mid);">Resend code in <span style="color:var(--primary); font-weight:700;">0:48</span></div>
+              <button data-screen="pending" onClick="{{ nav }}" class="press" style="width:100%; background:var(--grad); color:#fff; border:none; padding:16px; border-radius:14px; font-size:14px; font-weight:600; font-family:inherit; letter-spacing:.5px; margin-top:auto; box-shadow:0 10px 24px var(--shadow); cursor:pointer;">VERIFY</button>
+            </div>
+          </sc-if>
+
+          <!-- ========== PENDING APPROVAL ========== -->
+          <sc-if value="{{ s_pending }}">
+            <div class="screen-enter" style="min-height:100%; padding:70px 30px 36px; display:flex; flex-direction:column; align-items:center; text-align:center;">
+              <div style="width:120px; height:120px; border-radius:50%; background:var(--amber-tint); display:flex; align-items:center; justify-content:center; margin-top:36px; position:relative;">
+                <div style="position:absolute; inset:-8px; border-radius:50%; border:2px dashed var(--amber); opacity:.4; animation:spin 14s linear infinite;"></div>
+                <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.6"><path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.17a2 2 0 0 0-.59-1.42L12 12l-4.41 4.41A2 2 0 0 0 7 17.83V22"/><path d="M7 2v4.17a2 2 0 0 0 .59 1.42L12 12l4.41-4.41A2 2 0 0 0 17 6.17V2"/></svg>
+              </div>
+              <div style="font-size:23px; font-weight:700; color:var(--ink); margin-top:34px;">Application Under Review</div>
+              <div style="font-size:14px; color:var(--mid); margin-top:12px; line-height:1.65; max-width:280px;">Thank you, Ahsan. The Management Committee will verify your details within <b style="color:var(--ink);">24–48 hours</b>. You'll receive a notification once approved.</div>
+
+              <div style="width:100%; background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:18px; margin-top:30px; display:flex; gap:14px; align-items:center; box-shadow:0 2px 10px var(--shadow);">
+                <div style="width:44px; height:44px; border-radius:12px; background:var(--primary-tint); display:flex; align-items:center; justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+                <div style="text-align:left; flex:1;"><div style="font-size:13.5px; font-weight:600; color:var(--ink);">Need help?</div><div style="font-size:12px; color:var(--mid); margin-top:2px;">Contact MC support office</div></div>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--light)" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+              </div>
+
+              <button data-screen="home" onClick="{{ nav }}" class="press" style="width:100%; background:var(--grad); color:#fff; border:none; padding:15px; border-radius:14px; font-size:13.5px; font-weight:600; font-family:inherit; margin-top:auto; cursor:pointer; box-shadow:0 8px 20px var(--shadow);">PREVIEW APP (DEMO)</button>
+              <div style="font-size:13px; color:var(--mid); margin-top:16px;">Logout</div>
+            </div>
+          </sc-if>
+
+          <!-- ========== HOME ========== -->
+          <sc-if value="{{ s_home }}">
+            <div class="screen-enter" style="min-height:100%; padding-bottom:96px;">
+              <!-- gradient header -->
+              <div style="background:var(--grad); padding:58px 22px 78px; border-bottom-left-radius:30px; border-bottom-right-radius:30px; position:relative;">
+                <div style="display:flex; align-items:center; justify-content:space-between;">
+                  <div style="display:flex; align-items:center; gap:11px;">
+                    <div style="width:38px; height:38px; border-radius:11px; background:#fff; display:flex; align-items:center; justify-content:center; overflow:hidden;"><img src="assets/logo.png" alt="" style="width:32px; height:32px; object-fit:contain;"/></div>
+                    <div style="font-size:16px; font-weight:700; color:#fff; letter-spacing:.3px;">WAPDA City</div>
+                  </div>
+                  <div style="display:flex; align-items:center; gap:14px;">
+                    <div data-screen="notifications" onClick="{{ nav }}" style="position:relative;"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span style="position:absolute; top:-3px; right:-3px; width:16px; height:16px; border-radius:50%; background:var(--danger); color:#fff; font-size:9px; font-weight:700; display:flex; align-items:center; justify-content:center; border:1.5px solid var(--maroon);">3</span></div>
+                    <div data-screen="profile" onClick="{{ nav }}" style="width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,.22); border:1.5px solid rgba(255,255,255,.5); display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:14px;">AR</div>
+                  </div>
+                </div>
+                <div style="margin-top:22px;">
+                  <div style="font-size:13.5px; color:rgba(255,255,255,.82); font-weight:300;">Good Morning,</div>
+                  <div style="display:flex; align-items:center; gap:8px; margin-top:3px;"><span style="font-size:23px; font-weight:700; color:#fff;">Ahsan Raza</span><svg width="18" height="18" viewBox="0 0 24 24" fill="var(--success)" stroke="#fff" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4" stroke="#fff" fill="none" stroke-width="2"/></svg></div>
+                  <div style="font-size:12.5px; color:rgba(255,255,255,.75); margin-top:3px;">House H-247, Block C · Verified Resident</div>
+                </div>
+              </div>
+
+              <!-- service charge card (overlaps header) -->
+              <div style="margin:-52px 18px 0; background:var(--maroon); border-radius:20px; padding:20px; box-shadow:0 16px 36px rgba(94,36,25,.34); position:relative; overflow:hidden;">
+                <div style="position:absolute; top:-30px; right:-30px; width:130px; height:130px; border-radius:50%; background:rgba(255,255,255,.06);"></div>
+                <div style="display:flex; justify-content:space-between; align-items:flex-start; position:relative;">
+                  <div>
+                    <div style="font-size:12px; color:rgba(255,255,255,.72); font-weight:400;">Current Service Charge</div>
+                    <div style="font-size:30px; font-weight:700; color:#fff; margin-top:5px;">PKR 2,500</div>
+                    <div style="font-size:12px; color:rgba(255,255,255,.7); margin-top:3px;">Due 30 June 2026 · June billing</div>
+                  </div>
+                  <span style="background:var(--amber-tint); color:#92600F; font-size:10.5px; font-weight:700; padding:5px 11px; border-radius:20px;">PENDING</span>
+                </div>
+                <div style="display:flex; gap:11px; margin-top:18px; position:relative;">
+                  <button data-screen="payMethod" onClick="{{ nav }}" class="press" style="flex:1; background:var(--success); color:#fff; border:none; padding:13px; border-radius:12px; font-size:13px; font-weight:600; font-family:inherit; cursor:pointer;">PAY NOW</button>
+                  <button data-screen="bills" onClick="{{ nav }}" class="press" style="background:rgba(255,255,255,.16); color:#fff; border:none; padding:13px 18px; border-radius:12px; font-size:13px; font-weight:600; font-family:inherit; cursor:pointer;">History</button>
+                </div>
+              </div>
+
+              <!-- quick actions -->
+              <div class="scr" style="display:flex; gap:10px; overflow-x:auto; padding:20px 18px 4px;">
+                <div data-screen="payMethod" onClick="{{ nav }}" class="press" style="flex:0 0 auto; display:flex; align-items:center; gap:7px; background:var(--primary); color:#fff; padding:9px 15px; border-radius:22px; font-size:12.5px; font-weight:600;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>Pay Bill</div>
+                <div data-screen="fileComplaint" onClick="{{ nav }}" class="press" style="flex:0 0 auto; display:flex; align-items:center; gap:7px; background:var(--surface); border:1px solid var(--border); color:var(--ink); padding:9px 15px; border-radius:22px; font-size:12.5px; font-weight:600;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/></svg>Complaint</div>
+                <div data-screen="visitors" onClick="{{ nav }}" class="press" style="flex:0 0 auto; display:flex; align-items:center; gap:7px; background:var(--surface); border:1px solid var(--border); color:var(--ink); padding:9px 15px; border-radius:22px; font-size:12.5px; font-weight:600;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>Invite Guest</div>
+                <div data-screen="notices" onClick="{{ nav }}" class="press" style="flex:0 0 auto; display:flex; align-items:center; gap:7px; background:var(--surface); border:1px solid var(--border); color:var(--ink); padding:9px 15px; border-radius:22px; font-size:12.5px; font-weight:600;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>Notices</div>
+              </div>
+
+              <!-- feature grid -->
+              <div style="padding:20px 18px 0;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;"><span style="font-size:15px; font-weight:700; color:var(--ink);">All Services</span></div>
+                <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:11px 8px;">
+                  <div data-screen="bills" onClick="{{ nav }}" class="press" style="text-align:center;"><div style="width:54px; height:54px; margin:0 auto; border-radius:17px; background:var(--primary-tint); display:flex; align-items:center; justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.7"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M8 7h8M8 11h8M8 15h5"/></svg></div><div style="font-size:11px; color:var(--mid); margin-top:6px; font-weight:500;">Charges</div></div>
+                  <div data-screen="complaints" onClick="{{ nav }}" class="press" style="text-align:center; position:relative;"><div style="width:54px; height:54px; margin:0 auto; border-radius:17px; background:var(--amber-tint); display:flex; align-items:center; justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.7"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/><path d="M12 8v4M12 16h.01"/></svg></div><div style="font-size:11px; color:var(--mid); margin-top:6px; font-weight:500;">Complaints</div><span style="position:absolute; top:-2px; right:14px; width:9px; height:9px; border-radius:50%; background:var(--danger); border:1.5px solid var(--bg);"></span></div>
+                  <div data-screen="notices" onClick="{{ nav }}" class="press" style="text-align:center;"><div style="width:54px; height:54px; margin:0 auto; border-radius:17px; background:var(--success-tint); display:flex; align-items:center; justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="1.7"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></div><div style="font-size:11px; color:var(--mid); margin-top:6px; font-weight:500;">Notices</div></div>
+                  <div data-screen="events" onClick="{{ nav }}" class="press" style="text-align:center;"><div style="width:54px; height:54px; margin:0 auto; border-radius:17px; background:var(--primary-tint); display:flex; align-items:center; justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.7"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></div><div style="font-size:11px; color:var(--mid); margin-top:6px; font-weight:500;">Events</div></div>
+                  <div data-screen="media" onClick="{{ nav }}" class="press" style="text-align:center;"><div style="width:54px; height:54px; margin:0 auto; border-radius:17px; background:var(--success-tint); display:flex; align-items:center; justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg></div><div style="font-size:11px; color:var(--mid); margin-top:6px; font-weight:500;">Media Hub</div></div>
+                  <div data-screen="visitors" onClick="{{ nav }}" class="press" style="text-align:center;"><div style="width:54px; height:54px; margin:0 auto; border-radius:17px; background:var(--amber-tint); display:flex; align-items:center; justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.7"><path d="M13 4h3a2 2 0 0 1 2 2v14M2 20h3M13 20h9M10 12v.01M13 4.6V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h7a1 1 0 0 1 .9.6z"/></svg></div><div style="font-size:11px; color:var(--mid); margin-top:6px; font-weight:500;">Visitors</div></div>
+                  <div data-screen="community" onClick="{{ nav }}" class="press" style="text-align:center;"><div style="width:54px; height:54px; margin:0 auto; border-radius:17px; background:var(--primary-tint); display:flex; align-items:center; justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.7"><path d="M3 6h18M3 12h18M3 18h12"/></svg></div><div style="font-size:11px; color:var(--mid); margin-top:6px; font-weight:500;">Community</div></div>
+                  <div data-screen="polls" onClick="{{ nav }}" class="press" style="text-align:center;"><div style="width:54px; height:54px; margin:0 auto; border-radius:17px; background:var(--success-tint); display:flex; align-items:center; justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="1.7"><path d="M3 3v18h18"/><rect x="7" y="10" width="3" height="7"/><rect x="13" y="6" width="3" height="11"/></svg></div><div style="font-size:11px; color:var(--mid); margin-top:6px; font-weight:500;">Polls</div></div>
+                  <div data-screen="directory" onClick="{{ nav }}" class="press" style="text-align:center;"><div style="width:54px; height:54px; margin:0 auto; border-radius:17px; background:var(--primary-tint); display:flex; align-items:center; justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.7"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div><div style="font-size:11px; color:var(--mid); margin-top:6px; font-weight:500;">Directory</div></div>
+                  <div data-screen="labour" onClick="{{ nav }}" class="press" style="text-align:center;"><div style="width:54px; height:54px; margin:0 auto; border-radius:17px; background:var(--amber-tint); display:flex; align-items:center; justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.7"><path d="M2 18a10 10 0 0 1 20 0"/><path d="M12 2v3M12 8a4 4 0 0 0-4 4h8a4 4 0 0 0-4-4z"/><path d="M2 18h20v2H2z"/></svg></div><div style="font-size:11px; color:var(--mid); margin-top:6px; font-weight:500;">Labour</div></div>
+                  <div data-screen="sos" onClick="{{ nav }}" class="press" style="text-align:center;"><div style="width:54px; height:54px; margin:0 auto; border-radius:17px; background:var(--danger-tint); display:flex; align-items:center; justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="1.7"><path d="M7 18v-6a5 5 0 0 1 10 0v6"/><path d="M5 18h14M9 22h6M12 2v2"/></svg></div><div style="font-size:11px; color:var(--mid); margin-top:6px; font-weight:500;">SOS</div></div>
+                  <div data-screen="mcDashboard" onClick="{{ nav }}" class="press" style="text-align:center;"><div style="width:54px; height:54px; margin:0 auto; border-radius:17px; background:#F3ECD8; display:flex; align-items:center; justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.7"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div><div style="font-size:11px; color:var(--gold); margin-top:6px; font-weight:600;">MC Panel</div></div>
+                </div>
+              </div>
+
+              <!-- recent activity -->
+              <div style="padding:24px 18px 0;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;"><span style="font-size:15px; font-weight:700; color:var(--ink);">Recent Activity</span><span style="font-size:12.5px; color:var(--primary); font-weight:600;">See all</span></div>
+                <div style="background:var(--surface); border:1px solid var(--border); border-radius:16px; overflow:hidden; box-shadow:0 2px 10px var(--shadow);">
+                  <div style="display:flex; align-items:center; gap:13px; padding:14px 15px; border-bottom:1px solid var(--border);"><div style="width:40px; height:40px; border-radius:11px; background:var(--success-tint); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></div><div style="flex:1;"><div style="font-size:13.5px; font-weight:600; color:var(--ink);">Payment received — May</div><div style="font-size:11.5px; color:var(--light); margin-top:2px;">2 days ago</div></div><span style="font-size:13px; font-weight:700; color:var(--success);">PKR 2,500</span></div>
+                  <div style="display:flex; align-items:center; gap:13px; padding:14px 15px; border-bottom:1px solid var(--border);"><div style="width:40px; height:40px; border-radius:11px; background:var(--amber-tint); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div style="flex:1;"><div style="font-size:13.5px; font-weight:600; color:var(--ink);">Complaint #1042 in progress</div><div style="font-size:11.5px; color:var(--light); margin-top:2px;">Water supply · yesterday</div></div><span style="font-size:10px; font-weight:700; color:var(--amber); background:var(--amber-tint); padding:4px 9px; border-radius:12px;">ACTIVE</span></div>
+                  <div style="display:flex; align-items:center; gap:13px; padding:14px 15px;"><div style="width:40px; height:40px; border-radius:11px; background:var(--primary-tint); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="m3 11 18-5v12L3 14v-3z"/></svg></div><div style="flex:1;"><div style="font-size:13.5px; font-weight:600; color:var(--ink);">New notice: Water tank cleaning</div><div style="font-size:11.5px; color:var(--light); margin-top:2px;">3 days ago</div></div></div>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- ========== BILLS LIST ========== -->
+          <sc-if value="{{ s_bills }}">
+            <div class="screen-enter" style="min-height:100%; padding-bottom:24px;">
+              <div style="padding:54px 18px 14px; background:var(--surface); border-bottom:1px solid var(--border); display:flex; align-items:center; gap:13px; position:sticky; top:0; z-index:30;">
+                <div onClick="{{ back }}" class="press" style="width:38px; height:38px; border-radius:11px; background:var(--bg); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></div>
+                <div style="font-size:18px; font-weight:700; color:var(--ink);">Service Charges</div>
+              </div>
+              <div style="padding:18px;">
+                <div style="background:var(--maroon); border-radius:18px; padding:18px 20px; color:#fff; box-shadow:0 12px 28px rgba(94,36,25,.28);">
+                  <div style="font-size:12px; opacity:.78;">Total Outstanding</div>
+                  <div style="font-size:28px; font-weight:700; margin-top:4px;">PKR 2,500</div>
+                  <div style="font-size:12px; opacity:.78; margin-top:3px;">1 pending bill · paid up to May 2026</div>
+                </div>
+                <div style="display:flex; gap:8px; margin-top:18px; background:var(--surface-2); padding:5px; border-radius:13px; border:1px solid var(--border);">
+                  <div data-billtab="pending" onClick="{{ setBillTab }}" class="press" style="flex:1; text-align:center; padding:9px; border-radius:9px; font-size:12.5px; font-weight:600; color:{{ btP_c }}; background:{{ btP_bg }};">Pending</div>
+                  <div data-billtab="paid" onClick="{{ setBillTab }}" class="press" style="flex:1; text-align:center; padding:9px; border-radius:9px; font-size:12.5px; font-weight:600; color:{{ btD_c }}; background:{{ btD_bg }};">Paid</div>
+                  <div data-billtab="all" onClick="{{ setBillTab }}" class="press" style="flex:1; text-align:center; padding:9px; border-radius:9px; font-size:12.5px; font-weight:600; color:{{ btA_c }}; background:{{ btA_bg }};">All</div>
+                </div>
+
+                <div style="margin-top:16px; display:flex; flex-direction:column; gap:11px;">
+                  <sc-if value="{{ billShowPending }}">
+                    <div data-screen="billDetail" onClick="{{ nav }}" class="press" style="background:var(--surface); border:1px solid var(--border); border-left:4px solid var(--amber); border-radius:14px; padding:15px; display:flex; align-items:center; gap:13px; box-shadow:0 2px 8px var(--shadow);">
+                      <div style="width:44px; height:44px; border-radius:12px; background:var(--amber-tint); display:flex; align-items:center; justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></div>
+                      <div style="flex:1;"><div style="font-size:14.5px; font-weight:600; color:var(--ink);">June 2026</div><div style="font-size:12px; color:var(--mid); margin-top:2px;">Due 30 Jun · Maintenance + Water</div></div>
+                      <div style="text-align:right;"><div style="font-size:15px; font-weight:700; color:var(--ink);">2,500</div><span style="font-size:9.5px; font-weight:700; color:var(--amber); background:var(--amber-tint); padding:3px 8px; border-radius:10px;">PENDING</span></div>
+                    </div>
+                  </sc-if>
+                  <sc-if value="{{ billShowPaid }}">
+                    <div style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:15px; display:flex; align-items:center; gap:13px; box-shadow:0 2px 8px var(--shadow);">
+                      <div style="width:44px; height:44px; border-radius:12px; background:var(--success-tint); display:flex; align-items:center; justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></div>
+                      <div style="flex:1;"><div style="font-size:14.5px; font-weight:600; color:var(--ink);">May 2026</div><div style="font-size:12px; color:var(--mid); margin-top:2px;">Paid 5 May · JazzCash</div></div>
+                      <div style="text-align:right;"><div style="font-size:15px; font-weight:700; color:var(--ink);">2,500</div><span style="font-size:9.5px; font-weight:700; color:var(--success); background:var(--success-tint); padding:3px 8px; border-radius:10px;">PAID</span></div>
+                    </div>
+                    <div style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:15px; display:flex; align-items:center; gap:13px; box-shadow:0 2px 8px var(--shadow);">
+                      <div style="width:44px; height:44px; border-radius:12px; background:var(--success-tint); display:flex; align-items:center; justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></div>
+                      <div style="flex:1;"><div style="font-size:14.5px; font-weight:600; color:var(--ink);">April 2026</div><div style="font-size:12px; color:var(--mid); margin-top:2px;">Paid 3 Apr · Easypaisa</div></div>
+                      <div style="text-align:right;"><div style="font-size:15px; font-weight:700; color:var(--ink);">2,500</div><span style="font-size:9.5px; font-weight:700; color:var(--success); background:var(--success-tint); padding:3px 8px; border-radius:10px;">PAID</span></div>
+                    </div>
+                  </sc-if>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- ========== BILL DETAIL ========== -->
+          <sc-if value="{{ s_billDetail }}">
+            <div class="screen-enter" style="min-height:100%; padding-bottom:24px;">
+              <div style="padding:54px 18px 14px; background:var(--surface); border-bottom:1px solid var(--border); display:flex; align-items:center; gap:13px; position:sticky; top:0; z-index:30;">
+                <div onClick="{{ back }}" class="press" style="width:38px; height:38px; border-radius:11px; background:var(--bg); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></div>
+                <div style="font-size:18px; font-weight:700; color:var(--ink);">Bill Detail</div>
+              </div>
+              <div style="padding:18px;">
+                <div style="text-align:center; padding:8px 0 18px;">
+                  <div style="font-size:13px; color:var(--mid);">June 2026 · Bill #WC-2026-06-247</div>
+                  <div style="font-size:34px; font-weight:700; color:var(--ink); margin-top:6px;">PKR 2,500</div>
+                  <span style="font-size:10px; font-weight:700; color:var(--amber); background:var(--amber-tint); padding:5px 12px; border-radius:20px;">DUE 30 JUNE 2026</span>
+                </div>
+                <div style="background:var(--surface); border:1px solid var(--border); border-radius:16px; overflow:hidden; box-shadow:0 2px 10px var(--shadow);">
+                  <div style="padding:12px 16px; font-size:12px; font-weight:700; color:var(--mid); background:var(--surface-2); letter-spacing:.5px;">ITEMISED BREAKDOWN</div>
+                  <div style="display:flex; justify-content:space-between; padding:13px 16px; border-bottom:1px solid var(--border);"><span style="font-size:13.5px; color:var(--ink);">Maintenance Fee</span><span style="font-size:13.5px; font-weight:600; color:var(--ink);">1,800</span></div>
+                  <div style="display:flex; justify-content:space-between; padding:13px 16px; border-bottom:1px solid var(--border);"><span style="font-size:13.5px; color:var(--ink);">Water Charges</span><span style="font-size:13.5px; font-weight:600; color:var(--ink);">500</span></div>
+                  <div style="display:flex; justify-content:space-between; padding:13px 16px; border-bottom:1px solid var(--border);"><span style="font-size:13.5px; color:var(--ink);">Street Lighting</span><span style="font-size:13.5px; font-weight:600; color:var(--ink);">200</span></div>
+                  <div style="display:flex; justify-content:space-between; padding:14px 16px; background:var(--primary-tint);"><span style="font-size:14px; font-weight:700; color:var(--maroon);">Total Due</span><span style="font-size:15px; font-weight:700; color:var(--maroon);">PKR 2,500</span></div>
+                </div>
+                <button data-screen="payMethod" onClick="{{ nav }}" class="press" style="width:100%; background:var(--success); color:#fff; border:none; padding:16px; border-radius:14px; font-size:14px; font-weight:600; font-family:inherit; letter-spacing:.5px; margin-top:18px; box-shadow:0 10px 22px rgba(92,138,106,.35); cursor:pointer;">PAY NOW · PKR 2,500</button>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- ========== PAYMENT METHOD ========== -->
+          <sc-if value="{{ s_payMethod }}">
+            <div class="screen-enter" style="min-height:100%; padding-bottom:24px;">
+              <div style="padding:54px 18px 14px; background:var(--surface); border-bottom:1px solid var(--border); display:flex; align-items:center; gap:13px; position:sticky; top:0; z-index:30;">
+                <div onClick="{{ back }}" class="press" style="width:38px; height:38px; border-radius:11px; background:var(--bg); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></div>
+                <div style="font-size:18px; font-weight:700; color:var(--ink);">Select Payment</div>
+              </div>
+              <div style="padding:18px;">
+                <div style="font-size:13px; color:var(--mid); margin-bottom:14px;">Paying <b style="color:var(--ink);">PKR 2,500</b> for June 2026 charges</div>
+                <div style="display:flex; flex-direction:column; gap:11px;">
+                  <div class="press" style="display:flex; align-items:center; gap:13px; background:var(--surface); border:2px solid var(--primary); border-radius:14px; padding:15px; box-shadow:0 2px 10px var(--shadow);">
+                    <div style="width:46px; height:46px; border-radius:12px; background:#C8102E; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:11px;">Jazz</div>
+                    <div style="flex:1;"><div style="font-size:14.5px; font-weight:600; color:var(--ink);">JazzCash</div><div style="font-size:12px; color:var(--mid);">Mobile wallet · last used</div></div>
+                    <div style="width:22px; height:22px; border-radius:50%; border:2px solid var(--primary); display:flex; align-items:center; justify-content:center;"><div style="width:12px; height:12px; border-radius:50%; background:var(--primary);"></div></div>
+                  </div>
+                  <div class="press" style="display:flex; align-items:center; gap:13px; background:var(--surface); border:1.5px solid var(--border); border-radius:14px; padding:15px;">
+                    <div style="width:46px; height:46px; border-radius:12px; background:#00A651; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:9px;">easy</div>
+                    <div style="flex:1;"><div style="font-size:14.5px; font-weight:600; color:var(--ink);">Easypaisa</div><div style="font-size:12px; color:var(--mid);">Mobile wallet</div></div>
+                    <div style="width:22px; height:22px; border-radius:50%; border:2px solid var(--border);"></div>
+                  </div>
+                  <div class="press" style="display:flex; align-items:center; gap:13px; background:var(--surface); border:1.5px solid var(--border); border-radius:14px; padding:15px;">
+                    <div style="width:46px; height:46px; border-radius:12px; background:var(--primary-tint); display:flex; align-items:center; justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div>
+                    <div style="flex:1;"><div style="font-size:14.5px; font-weight:600; color:var(--ink);">Credit / Debit Card</div><div style="font-size:12px; color:var(--mid);">Visa, Mastercard</div></div>
+                    <div style="width:22px; height:22px; border-radius:50%; border:2px solid var(--border);"></div>
+                  </div>
+                  <div class="press" style="display:flex; align-items:center; gap:13px; background:var(--surface); border:1.5px solid var(--border); border-radius:14px; padding:15px;">
+                    <div style="width:46px; height:46px; border-radius:12px; background:var(--primary-tint); display:flex; align-items:center; justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M9 14v3M15 14v3"/></svg></div>
+                    <div style="flex:1;"><div style="font-size:14.5px; font-weight:600; color:var(--ink);">Bank Transfer</div><div style="font-size:12px; color:var(--mid);">Direct IBFT</div></div>
+                    <div style="width:22px; height:22px; border-radius:50%; border:2px solid var(--border);"></div>
+                  </div>
+                </div>
+                <button data-screen="paySuccess" onClick="{{ nav }}" class="press" style="width:100%; background:var(--grad); color:#fff; border:none; padding:16px; border-radius:14px; font-size:14px; font-weight:600; font-family:inherit; letter-spacing:.5px; margin-top:20px; box-shadow:0 10px 22px var(--shadow); cursor:pointer;">CONTINUE TO PAY</button>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- ========== PAYMENT SUCCESS ========== -->
+          <sc-if value="{{ s_paySuccess }}">
+            <div class="screen-enter" style="position:absolute; inset:0; background:linear-gradient(160deg,#3F6B50,#5C8A6A); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:30px; text-align:center;">
+              <div style="width:104px; height:104px; border-radius:50%; background:rgba(255,255,255,.18); display:flex; align-items:center; justify-content:center; animation:splashIn .5s cubic-bezier(.2,.8,.2,1);">
+                <div style="width:74px; height:74px; border-radius:50%; background:#fff; display:flex; align-items:center; justify-content:center;"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#5C8A6A" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></div>
+              </div>
+              <div style="font-size:25px; font-weight:700; color:#fff; margin-top:28px;">Payment Successful!</div>
+              <div style="font-size:14px; color:rgba(255,255,255,.85); margin-top:8px;">Your June 2026 charges are cleared</div>
+              <div style="width:100%; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.22); border-radius:16px; padding:18px; margin-top:28px; backdrop-filter:blur(6px);">
+                <div style="display:flex; justify-content:space-between; padding:5px 0;"><span style="font-size:13px; color:rgba(255,255,255,.8);">Amount</span><span style="font-size:13.5px; font-weight:700; color:#fff;">PKR 2,500</span></div>
+                <div style="display:flex; justify-content:space-between; padding:5px 0;"><span style="font-size:13px; color:rgba(255,255,255,.8);">Reference</span><span style="font-size:13.5px; font-weight:600; color:#fff;">JC-8841920</span></div>
+                <div style="display:flex; justify-content:space-between; padding:5px 0;"><span style="font-size:13px; color:rgba(255,255,255,.8);">Date</span><span style="font-size:13.5px; font-weight:600; color:#fff;">27 Jun 2026, 9:41 AM</span></div>
+              </div>
+              <button class="press" style="width:100%; background:#fff; color:#3F6B50; border:none; padding:15px; border-radius:14px; font-size:13.5px; font-weight:700; font-family:inherit; margin-top:24px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3F6B50" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Download Receipt</button>
+              <div data-screen="home" onClick="{{ nav }}" style="color:#fff; font-size:13.5px; font-weight:600; margin-top:18px; opacity:.9;">Back to Home</div>
+            </div>
+          </sc-if>
+
+          <!-- ========== COMPLAINTS LIST ========== -->
+          <sc-if value="{{ s_complaints }}">
+            <div class="screen-enter" style="min-height:100%; padding-bottom:24px; position:relative;">
+              <div style="padding:54px 18px 14px; background:var(--surface); border-bottom:1px solid var(--border); display:flex; align-items:center; gap:13px; position:sticky; top:0; z-index:30;">
+                <div onClick="{{ back }}" class="press" style="width:38px; height:38px; border-radius:11px; background:var(--bg); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></div>
+                <div style="font-size:18px; font-weight:700; color:var(--ink);">My Complaints</div>
+              </div>
+              <div class="scr" style="display:flex; gap:8px; overflow-x:auto; padding:16px 18px 6px;">
+                <span style="flex:0 0 auto; font-size:12.5px; font-weight:600; color:#fff; background:var(--primary); padding:8px 15px; border-radius:20px;">Open</span>
+                <span style="flex:0 0 auto; font-size:12.5px; font-weight:600; color:var(--mid); background:var(--surface); border:1px solid var(--border); padding:8px 15px; border-radius:20px;">In Progress</span>
+                <span style="flex:0 0 auto; font-size:12.5px; font-weight:600; color:var(--mid); background:var(--surface); border:1px solid var(--border); padding:8px 15px; border-radius:20px;">Resolved</span>
+              </div>
+              <div style="padding:6px 18px 0; display:flex; flex-direction:column; gap:11px;">
+                <div data-screen="complaintDetail" onClick="{{ nav }}" class="press" style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:15px; box-shadow:0 2px 8px var(--shadow);">
+                  <div style="display:flex; align-items:center; gap:11px;">
+                    <div style="width:42px; height:42px; border-radius:12px; background:var(--amber-tint); display:flex; align-items:center; justify-content:center;"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.8"><path d="M2 12s3-7 10-7 10 7 10 7"/><path d="M12 5v-3M5 7 3 5M19 7l2-2"/></svg></div>
+                    <div style="flex:1;"><div style="font-size:14px; font-weight:600; color:var(--ink);">Low water pressure</div><div style="font-size:11.5px; color:var(--light); margin-top:2px;">#1042 · Water · 2h ago</div></div>
+                    <span style="font-size:9.5px; font-weight:700; color:var(--amber); background:var(--amber-tint); padding:4px 9px; border-radius:11px;">IN PROGRESS</span>
+                  </div>
+                </div>
+                <div data-screen="complaintDetail" onClick="{{ nav }}" class="press" style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:15px; box-shadow:0 2px 8px var(--shadow);">
+                  <div style="display:flex; align-items:center; gap:11px;">
+                    <div style="width:42px; height:42px; border-radius:12px; background:var(--primary-tint); display:flex; align-items:center; justify-content:center;"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg></div>
+                    <div style="flex:1;"><div style="font-size:14px; font-weight:600; color:var(--ink);">Street light not working</div><div style="font-size:11.5px; color:var(--light); margin-top:2px;">#1039 · Electricity · 1d ago</div></div>
+                    <span style="font-size:9.5px; font-weight:700; color:var(--primary); background:var(--primary-tint); padding:4px 9px; border-radius:11px;">OPEN</span>
+                  </div>
+                </div>
+                <div class="press" style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:15px; box-shadow:0 2px 8px var(--shadow); opacity:.78;">
+                  <div style="display:flex; align-items:center; gap:11px;">
+                    <div style="width:42px; height:42px; border-radius:12px; background:var(--success-tint); display:flex; align-items:center; justify-content:center;"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></div>
+                    <div style="flex:1;"><div style="font-size:14px; font-weight:600; color:var(--ink);">Garbage not collected</div><div style="font-size:11.5px; color:var(--light); margin-top:2px;">#1031 · Cleanliness · 4d ago</div></div>
+                    <span style="font-size:9.5px; font-weight:700; color:var(--success); background:var(--success-tint); padding:4px 9px; border-radius:11px;">RESOLVED</span>
+                  </div>
+                </div>
+              </div>
+              <div data-screen="fileComplaint" onClick="{{ nav }}" class="press" style="position:absolute; bottom:22px; right:20px; width:56px; height:56px; border-radius:18px; background:var(--danger); display:flex; align-items:center; justify-content:center; box-shadow:0 10px 24px rgba(191,59,43,.4); z-index:20;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></div>
+            </div>
+          </sc-if>
+
+          <!-- ========== FILE COMPLAINT ========== -->
+          <sc-if value="{{ s_fileComplaint }}">
+            <div class="screen-enter" style="min-height:100%; padding-bottom:24px;">
+              <div style="padding:54px 18px 14px; background:var(--surface); border-bottom:1px solid var(--border); display:flex; align-items:center; gap:13px; position:sticky; top:0; z-index:30;">
+                <div onClick="{{ back }}" class="press" style="width:38px; height:38px; border-radius:11px; background:var(--bg); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></div>
+                <div style="font-size:18px; font-weight:700; color:var(--ink);">New Complaint</div>
+              </div>
+              <div style="padding:18px;">
+                <div style="font-size:13px; font-weight:600; color:var(--mid); margin-bottom:11px;">Select Category</div>
+                <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:9px;">
+                  <div class="press" style="text-align:center; padding:14px 6px; border-radius:14px; background:var(--primary-tint); border:2px solid var(--primary);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" style="margin:0 auto;"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg><div style="font-size:11px; color:var(--primary); margin-top:6px; font-weight:600;">Electricity</div></div>
+                  <div class="press" style="text-align:center; padding:14px 6px; border-radius:14px; background:var(--surface); border:1.5px solid var(--border);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--mid)" stroke-width="1.8" style="margin:0 auto;"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5S5 13 5 15a7 7 0 0 0 7 7z"/></svg><div style="font-size:11px; color:var(--mid); margin-top:6px; font-weight:600;">Water</div></div>
+                  <div class="press" style="text-align:center; padding:14px 6px; border-radius:14px; background:var(--surface); border:1.5px solid var(--border);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--mid)" stroke-width="1.8" style="margin:0 auto;"><path d="M3 7l3-3 3 3M6 4v16M21 17l-3 3-3-3M18 20V4"/></svg><div style="font-size:11px; color:var(--mid); margin-top:6px; font-weight:600;">Cleanliness</div></div>
+                  <div class="press" style="text-align:center; padding:14px 6px; border-radius:14px; background:var(--surface); border:1.5px solid var(--border);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--mid)" stroke-width="1.8" style="margin:0 auto;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div style="font-size:11px; color:var(--mid); margin-top:6px; font-weight:600;">Security</div></div>
+                  <div class="press" style="text-align:center; padding:14px 6px; border-radius:14px; background:var(--surface); border:1.5px solid var(--border);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--mid)" stroke-width="1.8" style="margin:0 auto;"><path d="M4 19V9l8-5 8 5v10M9 19v-6h6v6"/></svg><div style="font-size:11px; color:var(--mid); margin-top:6px; font-weight:600;">Roads</div></div>
+                  <div class="press" style="text-align:center; padding:14px 6px; border-radius:14px; background:var(--surface); border:1.5px solid var(--border);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--mid)" stroke-width="1.8" style="margin:0 auto;"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg><div style="font-size:11px; color:var(--mid); margin-top:6px; font-weight:600;">Other</div></div>
+                </div>
+                <div style="margin-top:18px;"><label style="font-size:12px; font-weight:600; color:var(--mid);">Title</label><input value="Frequent power fluctuation in Block C" readonly style="width:100%; margin-top:7px; border:1.5px solid var(--border); border-radius:12px; padding:13px; font-size:13.5px; font-family:inherit; background:var(--surface); color:var(--ink); outline:none;"/></div>
+                <div style="margin-top:14px;"><label style="font-size:12px; font-weight:600; color:var(--mid);">Description</label><div style="margin-top:7px; border:1.5px solid var(--border); border-radius:12px; padding:13px; background:var(--surface); min-height:84px; font-size:13.5px; color:var(--ink); line-height:1.55;">Voltage keeps dropping every evening between 7-9pm, causing appliances to shut off repeatedly.<div style="text-align:right; font-size:11px; color:var(--light); margin-top:8px;">112 / 500</div></div></div>
+                <div style="display:flex; align-items:flex-start; gap:9px; margin-top:14px; background:var(--primary-tint); border-radius:12px; padding:11px 13px;">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" style="flex-shrink:0;"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+                  <span style="font-size:11.5px; color:var(--maroon);"><b>AI suggests:</b> Electricity — accept category? Attach up to 3 photos for faster resolution.</span>
+                </div>
+                <button data-screen="complaintDetail" onClick="{{ nav }}" class="press" style="width:100%; background:var(--grad); color:#fff; border:none; padding:16px; border-radius:14px; font-size:14px; font-weight:600; font-family:inherit; letter-spacing:.5px; margin-top:18px; box-shadow:0 10px 22px var(--shadow); cursor:pointer;">SUBMIT COMPLAINT</button>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- ========== COMPLAINT DETAIL ========== -->
+          <sc-if value="{{ s_complaintDetail }}">
+            <div class="screen-enter" style="min-height:100%; padding-bottom:24px;">
+              <div style="padding:54px 18px 14px; background:var(--surface); border-bottom:1px solid var(--border); display:flex; align-items:center; gap:13px; position:sticky; top:0; z-index:30;">
+                <div onClick="{{ back }}" class="press" style="width:38px; height:38px; border-radius:11px; background:var(--bg); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></div>
+                <div style="font-size:18px; font-weight:700; color:var(--ink);">Complaint #1042</div>
+              </div>
+              <div style="padding:18px;">
+                <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;"><span style="font-size:10px; font-weight:700; color:var(--amber); background:var(--amber-tint); padding:4px 10px; border-radius:11px;">IN PROGRESS</span><span style="font-size:11.5px; color:var(--light);">Water · filed 2h ago</span></div>
+                <div style="font-size:19px; font-weight:700; color:var(--ink); margin-top:4px;">Low water pressure</div>
+                <div style="font-size:13.5px; color:var(--mid); margin-top:8px; line-height:1.55;">Water pressure on the upper floor has been very low since morning. Cannot run the geyser properly.</div>
+                <div style="display:flex; gap:10px; margin-top:14px;">
+                  <div style="flex:1; height:78px; border-radius:12px; background:repeating-linear-gradient(45deg,var(--surface-2),var(--surface-2) 8px,var(--border) 8px,var(--border) 9px); border:1px solid var(--border); display:flex; align-items:center; justify-content:center;"><span style="font-size:10px; color:var(--light); font-family:monospace;">photo 1</span></div>
+                  <div style="flex:1; height:78px; border-radius:12px; background:repeating-linear-gradient(45deg,var(--surface-2),var(--surface-2) 8px,var(--border) 8px,var(--border) 9px); border:1px solid var(--border); display:flex; align-items:center; justify-content:center;"><span style="font-size:10px; color:var(--light); font-family:monospace;">photo 2</span></div>
+                  <div style="flex:1;"></div>
+                </div>
+
+                <div style="font-size:13px; font-weight:700; color:var(--ink); margin:22px 0 14px;">Status Timeline</div>
+                <div style="position:relative; padding-left:8px;">
+                  <div style="display:flex; gap:14px; padding-bottom:18px; position:relative;"><div style="position:absolute; left:9px; top:22px; bottom:-4px; width:2px; background:var(--success);"></div><div style="width:20px; height:20px; border-radius:50%; background:var(--success); display:flex; align-items:center; justify-content:center; flex-shrink:0; z-index:2;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></div><div><div style="font-size:13.5px; font-weight:600; color:var(--ink);">Submitted</div><div style="font-size:11.5px; color:var(--light); margin-top:1px;">Today · 7:30 AM</div></div></div>
+                  <div style="display:flex; gap:14px; padding-bottom:18px; position:relative;"><div style="position:absolute; left:9px; top:22px; bottom:-4px; width:2px; background:var(--success);"></div><div style="width:20px; height:20px; border-radius:50%; background:var(--success); display:flex; align-items:center; justify-content:center; flex-shrink:0; z-index:2;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></div><div><div style="font-size:13.5px; font-weight:600; color:var(--ink);">Assigned to maintenance</div><div style="font-size:11.5px; color:var(--light); margin-top:1px;">Today · 8:05 AM</div></div></div>
+                  <div style="display:flex; gap:14px; padding-bottom:18px; position:relative;"><div style="position:absolute; left:9px; top:22px; bottom:-4px; width:2px; background:var(--border); border-left:2px dashed var(--border);"></div><div style="width:20px; height:20px; border-radius:50%; background:var(--amber); display:flex; align-items:center; justify-content:center; flex-shrink:0; z-index:2;"><div style="width:8px; height:8px; border-radius:50%; background:#fff;"></div></div><div><div style="font-size:13.5px; font-weight:600; color:var(--ink);">In Progress</div><div style="font-size:11.5px; color:var(--light); margin-top:1px;">Team dispatched · 9:20 AM</div></div></div>
+                  <div style="display:flex; gap:14px; position:relative;"><div style="width:20px; height:20px; border-radius:50%; background:var(--surface); border:2px solid var(--border); flex-shrink:0; z-index:2;"></div><div><div style="font-size:13.5px; font-weight:600; color:var(--light);">Resolved</div><div style="font-size:11.5px; color:var(--light); margin-top:1px;">Pending</div></div></div>
+                </div>
+
+                <div style="background:var(--surface); border:1px solid var(--gold); border-radius:14px; padding:14px; margin-top:20px;">
+                  <div style="display:flex; align-items:center; gap:8px; margin-bottom:7px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg><span style="font-size:12px; font-weight:700; color:var(--gold);">MC RESPONSE</span></div>
+                  <div style="font-size:13px; color:var(--ink); line-height:1.55;">Our team has identified a valve issue in the Block C line. Repair is underway and should be resolved by 2 PM today. Thank you for your patience.</div>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- ========== NOTICES (tab) ========== -->
+          <sc-if value="{{ s_notices }}">
+            <div class="screen-enter" style="min-height:100%; padding-bottom:100px;">
+              <div style="padding:56px 18px 16px; background:var(--surface); border-bottom:1px solid var(--border);">
+                <div style="display:flex; align-items:center; justify-content:space-between;"><div style="font-size:21px; font-weight:700; color:var(--ink);">Notice Board</div><div data-screen="events" onClick="{{ nav }}" class="press" style="font-size:12.5px; font-weight:600; color:var(--primary); display:flex; align-items:center; gap:5px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>Events</div></div>
+              </div>
+              <div class="scr" style="display:flex; gap:8px; overflow-x:auto; padding:14px 18px 4px;">
+                <span style="flex:0 0 auto; font-size:12px; font-weight:600; color:#fff; background:var(--primary); padding:7px 14px; border-radius:18px;">All</span>
+                <span style="flex:0 0 auto; font-size:12px; font-weight:600; color:var(--mid); background:var(--surface); border:1px solid var(--border); padding:7px 14px; border-radius:18px;">Emergency</span>
+                <span style="flex:0 0 auto; font-size:12px; font-weight:600; color:var(--mid); background:var(--surface); border:1px solid var(--border); padding:7px 14px; border-radius:18px;">Maintenance</span>
+                <span style="flex:0 0 auto; font-size:12px; font-weight:600; color:var(--mid); background:var(--surface); border:1px solid var(--border); padding:7px 14px; border-radius:18px;">Financial</span>
+              </div>
+              <div style="padding:8px 18px 0; display:flex; flex-direction:column; gap:11px;">
+                <div data-screen="noticeDetail" onClick="{{ nav }}" class="press" style="background:var(--surface); border:1px solid var(--border); border-radius:14px; overflow:hidden; box-shadow:0 2px 8px var(--shadow);">
+                  <div style="display:flex; align-items:center; gap:7px; background:var(--amber-tint); padding:7px 14px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="var(--gold)" stroke="var(--gold)" stroke-width="1.5"><path d="M12 2 12 17M5 10l7-7 7 7M5 22h14"/></svg><span style="font-size:10px; font-weight:700; color:var(--gold); letter-spacing:.5px;">PINNED BY MC</span></div>
+                  <div style="padding:14px;"><div style="display:flex; justify-content:space-between; align-items:flex-start;"><div style="font-size:14.5px; font-weight:600; color:var(--ink); flex:1; padding-right:8px;">Water tank cleaning — 28 June</div><span style="width:8px; height:8px; border-radius:50%; background:var(--primary); flex-shrink:0; margin-top:5px;"></span></div><div style="font-size:12.5px; color:var(--mid); margin-top:5px; line-height:1.5;">Supply will be suspended from 9 AM to 1 PM across all blocks. Please store water in advance.</div><div style="font-size:11px; color:var(--light); margin-top:8px;">General · 3 days ago</div></div>
+                </div>
+                <div data-screen="noticeDetail" onClick="{{ nav }}" class="press" style="background:var(--surface); border:1px solid var(--danger); border-radius:14px; padding:14px; box-shadow:0 2px 8px var(--shadow);">
+                  <div style="display:flex; align-items:center; gap:8px;"><span style="font-size:9.5px; font-weight:700; color:var(--danger); background:var(--danger-tint); padding:3px 9px; border-radius:10px;">EMERGENCY</span><span style="font-size:11px; color:var(--light);">1 day ago</span></div>
+                  <div style="font-size:14.5px; font-weight:600; color:var(--ink); margin-top:8px;">Gas leak reported near Block D park</div>
+                  <div style="font-size:12.5px; color:var(--mid); margin-top:4px; line-height:1.5;">Please avoid the area. SNGPL team is on site. Do not light fires nearby.</div>
+                </div>
+                <div data-screen="noticeDetail" onClick="{{ nav }}" class="press" style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px; box-shadow:0 2px 8px var(--shadow); opacity:.85;">
+                  <div style="display:flex; align-items:center; gap:8px;"><span style="font-size:9.5px; font-weight:700; color:var(--success); background:var(--success-tint); padding:3px 9px; border-radius:10px;">FINANCIAL</span><span style="font-size:11px; color:var(--light);">5 days ago</span></div>
+                  <div style="font-size:14.5px; font-weight:600; color:var(--ink); margin-top:8px;">June service charges now generated</div>
+                  <div style="font-size:12.5px; color:var(--mid); margin-top:4px; line-height:1.5;">Bills are available in the app. Kindly clear dues before 30 June to avoid late penalty.</div>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- ========== NOTICE DETAIL ========== -->
+          <sc-if value="{{ s_noticeDetail }}">
+            <div class="screen-enter" style="min-height:100%; padding-bottom:24px;">
+              <div style="padding:54px 18px 14px; background:var(--surface); border-bottom:1px solid var(--border); display:flex; align-items:center; gap:13px; position:sticky; top:0; z-index:30;">
+                <div onClick="{{ back }}" class="press" style="width:38px; height:38px; border-radius:11px; background:var(--bg); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></div>
+                <div style="font-size:18px; font-weight:700; color:var(--ink);">Notice</div>
+                <div style="margin-left:auto;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--mid)" stroke-width="1.8"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg></div>
+              </div>
+              <div style="padding:20px 18px;">
+                <span style="font-size:10px; font-weight:700; color:var(--gold); background:var(--amber-tint); padding:4px 11px; border-radius:11px;">PINNED · GENERAL</span>
+                <div style="font-size:22px; font-weight:700; color:var(--ink); margin-top:14px; line-height:1.3;">Water Tank Cleaning Schedule</div>
+                <div style="display:flex; align-items:center; gap:10px; margin-top:14px; padding-bottom:16px; border-bottom:1px solid var(--border);">
+                  <div style="width:38px; height:38px; border-radius:11px; background:var(--maroon); display:flex; align-items:center; justify-content:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                  <div><div style="font-size:13px; font-weight:600; color:var(--ink);">Management Committee</div><div style="font-size:11.5px; color:var(--light);">Posted 24 June 2026, 11:00 AM</div></div>
+                </div>
+                <div style="font-size:14px; color:var(--ink); line-height:1.7; margin-top:16px;">Dear Residents,<br><br>The annual water tank cleaning will be carried out on <b>28 June 2026</b>. Water supply will be temporarily suspended:<br><br>• <b>Blocks A & B:</b> 9:00 AM – 11:00 AM<br>• <b>Blocks C & D:</b> 11:30 AM – 1:00 PM<br><br>Kindly store sufficient water beforehand. We apologise for the inconvenience and appreciate your cooperation.</div>
+                <div style="display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--border); border-radius:13px; padding:13px; margin-top:20px;">
+                  <div style="width:42px; height:42px; border-radius:11px; background:var(--danger-tint); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div>
+                  <div style="flex:1;"><div style="font-size:13px; font-weight:600; color:var(--ink);">Cleaning_Schedule.pdf</div><div style="font-size:11px; color:var(--light);">214 KB</div></div>
+                  <span style="font-size:12px; font-weight:600; color:var(--primary);">Open</span>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- ========== EVENTS ========== -->
+          <sc-if value="{{ s_events }}">
+            <div class="screen-enter" style="min-height:100%; padding-bottom:24px;">
+              <div style="padding:54px 18px 14px; background:var(--surface); border-bottom:1px solid var(--border); display:flex; align-items:center; gap:13px; position:sticky; top:0; z-index:30;">
+                <div onClick="{{ back }}" class="press" style="width:38px; height:38px; border-radius:11px; background:var(--bg); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></div>
+                <div style="font-size:18px; font-weight:700; color:var(--ink);">Events</div>
+              </div>
+              <div class="scr" style="display:flex; gap:9px; overflow-x:auto; padding:16px 18px 6px;">
+                <div style="flex:0 0 auto; width:50px; text-align:center; padding:9px 0; border-radius:13px; background:var(--primary); color:#fff;"><div style="font-size:10px; opacity:.85;">SAT</div><div style="font-size:17px; font-weight:700; margin-top:1px;">28</div></div>
+                <div style="flex:0 0 auto; width:50px; text-align:center; padding:9px 0; border-radius:13px; background:var(--surface); border:1px solid var(--border); color:var(--ink); position:relative;"><div style="font-size:10px; color:var(--light);">SUN</div><div style="font-size:17px; font-weight:700; margin-top:1px;">29</div><span style="position:absolute; bottom:5px; left:50%; transform:translateX(-50%); width:5px; height:5px; border-radius:50%; background:var(--primary);"></span></div>
+                <div style="flex:0 0 auto; width:50px; text-align:center; padding:9px 0; border-radius:13px; background:var(--surface); border:1px solid var(--border); color:var(--ink);"><div style="font-size:10px; color:var(--light);">MON</div><div style="font-size:17px; font-weight:700; margin-top:1px;">30</div></div>
+                <div style="flex:0 0 auto; width:50px; text-align:center; padding:9px 0; border-radius:13px; background:var(--surface); border:1px solid var(--border); color:var(--ink);"><div style="font-size:10px; color:var(--light);">TUE</div><div style="font-size:17px; font-weight:700; margin-top:1px;">01</div></div>
+                <div style="flex:0 0 auto; width:50px; text-align:center; padding:9px 0; border-radius:13px; background:var(--surface); border:1px solid var(--border); color:var(--ink); position:relative;"><div style="font-size:10px; color:var(--light);">WED</div><div style="font-size:17px; font-weight:700; margin-top:1px;">02</div><span style="position:absolute; bottom:5px; left:50%; transform:translateX(-50%); width:5px; height:5px; border-radius:50%; background:var(--primary);"></span></div>
+              </div>
+              <div style="padding:8px 18px 0; display:flex; flex-direction:column; gap:14px;">
+                <div data-screen="eventDetail" onClick="{{ nav }}" class="press" style="background:var(--surface); border:1px solid var(--border); border-radius:16px; overflow:hidden; box-shadow:0 4px 14px var(--shadow);">
+                  <div style="height:120px; background:linear-gradient(135deg,var(--maroon),var(--primary)); position:relative; display:flex; align-items:flex-end; padding:13px;"><span style="font-size:10px; font-family:monospace; color:rgba(255,255,255,.6); position:absolute; top:12px; right:14px;">event cover</span><div style="font-size:18px; font-weight:700; color:#fff;">Eid Milad Celebration</div></div>
+                  <div style="padding:14px;">
+                    <div style="display:flex; gap:18px;"><div style="display:flex; align-items:center; gap:6px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg><span style="font-size:12px; color:var(--mid);">Sat, 28 Jun · 6 PM</span></div><div style="display:flex; align-items:center; gap:6px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg><span style="font-size:12px; color:var(--mid);">Central Lawn</span></div></div>
+                    <div style="display:flex; align-items:center; justify-content:space-between; margin-top:13px;"><div style="display:flex; align-items:center;"><div style="width:24px; height:24px; border-radius:50%; background:var(--primary-tint); border:2px solid var(--surface);"></div><div style="width:24px; height:24px; border-radius:50%; background:var(--amber-tint); border:2px solid var(--surface); margin-left:-8px;"></div><div style="width:24px; height:24px; border-radius:50%; background:var(--success-tint); border:2px solid var(--surface); margin-left:-8px;"></div><span style="font-size:11.5px; color:var(--mid); margin-left:8px;">128 going</span></div><span style="font-size:11.5px; font-weight:700; color:#fff; background:var(--success); padding:6px 14px; border-radius:18px;">RSVP</span></div>
+                  </div>
+                </div>
+                <div class="press" style="background:var(--surface); border:1px solid var(--border); border-radius:16px; overflow:hidden; box-shadow:0 4px 14px var(--shadow);">
+                  <div style="height:96px; background:linear-gradient(135deg,#3F6B50,#5C8A6A); position:relative; display:flex; align-items:flex-end; padding:13px;"><div style="font-size:17px; font-weight:700; color:#fff;">Community Clean-Up Drive</div></div>
+                  <div style="padding:14px; display:flex; gap:18px;"><div style="display:flex; align-items:center; gap:6px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg><span style="font-size:12px; color:var(--mid);">Wed, 2 Jul · 8 AM</span></div><div style="display:flex; align-items:center; gap:6px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/></svg><span style="font-size:12px; color:var(--mid);">Block D Park</span></div></div>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- ========== EVENT DETAIL ========== -->
+          <sc-if value="{{ s_eventDetail }}">
+            <div class="screen-enter" style="min-height:100%; padding-bottom:24px;">
+              <div style="height:240px; background:linear-gradient(135deg,var(--maroon),var(--primary)); position:relative; display:flex; align-items:flex-end; padding:20px;">
+                <div onClick="{{ back }}" class="press" style="position:absolute; top:52px; left:18px; width:38px; height:38px; border-radius:11px; background:rgba(0,0,0,.3); backdrop-filter:blur(6px); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></div>
+                <span style="font-size:10px; font-family:monospace; color:rgba(255,255,255,.55); position:absolute; top:58px; right:20px;">event cover photo</span>
+                <div style="position:absolute; inset:0; background:linear-gradient(to top,rgba(0,0,0,.5),transparent 50%);"></div>
+                <div style="position:relative;"><span style="font-size:10px; font-weight:700; color:#fff; background:rgba(255,255,255,.22); padding:4px 11px; border-radius:11px;">RELIGIOUS · MC EVENT</span><div style="font-size:24px; font-weight:700; color:#fff; margin-top:10px;">Eid Milad-un-Nabi Celebration</div></div>
+              </div>
+              <div style="padding:18px;">
+                <div style="display:flex; flex-direction:column; gap:13px;">
+                  <div style="display:flex; align-items:center; gap:13px;"><div style="width:42px; height:42px; border-radius:12px; background:var(--primary-tint); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></div><div><div style="font-size:14px; font-weight:600; color:var(--ink);">Saturday, 28 June 2026</div><div style="font-size:12px; color:var(--mid);">6:00 PM – 9:00 PM</div></div></div>
+                  <div style="display:flex; align-items:center; gap:13px;"><div style="width:42px; height:42px; border-radius:12px; background:var(--primary-tint); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div style="flex:1;"><div style="font-size:14px; font-weight:600; color:var(--ink);">Central Lawn, WAPDA City</div><div style="font-size:12px; color:var(--primary);">Open in Maps →</div></div></div>
+                </div>
+                <div style="font-size:14px; color:var(--ink); line-height:1.65; margin-top:18px;">Join us for an evening of naat, community dinner, and celebration. The MC invites all residents and their families. Free entry for verified residents.</div>
+                <div style="display:flex; align-items:center; justify-content:space-between; margin-top:18px; padding:14px; background:var(--surface); border:1px solid var(--border); border-radius:14px;"><div style="display:flex; align-items:center;"><div style="width:30px; height:30px; border-radius:50%; background:var(--primary-tint); border:2px solid var(--surface);"></div><div style="width:30px; height:30px; border-radius:50%; background:var(--amber-tint); border:2px solid var(--surface); margin-left:-9px;"></div><div style="width:30px; height:30px; border-radius:50%; background:var(--success-tint); border:2px solid var(--surface); margin-left:-9px;"></div><div style="width:30px; height:30px; border-radius:50%; background:var(--maroon); border:2px solid var(--surface); margin-left:-9px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:9px; font-weight:700;">+125</div></div><span style="font-size:12.5px; color:var(--mid);">128 going</span></div>
+                <button class="press" style="width:100%; background:var(--success); color:#fff; border:none; padding:16px; border-radius:14px; font-size:14px; font-weight:600; font-family:inherit; letter-spacing:.5px; margin-top:18px; box-shadow:0 10px 22px rgba(92,138,106,.32); cursor:pointer;">RSVP NOW</button>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- ========== MEDIA HUB ========== -->
+          <sc-if value="{{ s_media }}">
+            <div class="screen-enter" style="min-height:100%; padding-bottom:24px;">
+              <div style="padding:54px 18px 14px; background:var(--surface); border-bottom:1px solid var(--border); display:flex; align-items:center; gap:13px; position:sticky; top:0; z-index:30;">
+                <div onClick="{{ back }}" class="press" style="width:38px; height:38px; border-radius:11px; background:var(--bg); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></div>
+                <div style="font-size:18px; font-weight:700; color:var(--ink);">Media Hub</div>
+              </div>
+              <div class="scr" style="display:flex; gap:8px; overflow-x:auto; padding:14px 18px 6px;">
+                <span style="flex:0 0 auto; font-size:12px; font-weight:600; color:#fff; background:var(--primary); padding:7px 14px; border-radius:18px;">All</span>
+                <span style="flex:0 0 auto; font-size:12px; font-weight:600; color:var(--mid); background:var(--surface); border:1px solid var(--border); padding:7px 14px; border-radius:18px;">Photos</span>
+                <span style="flex:0 0 auto; font-size:12px; font-weight:600; color:var(--mid); background:var(--surface); border:1px solid var(--border); padding:7px 14px; border-radius:18px;">Videos</span>
+                <span style="flex:0 0 auto; font-size:12px; font-weight:600; color:var(--mid); background:var(--surface); border:1px solid var(--border); padding:7px 14px; border-radius:18px;">Events</span>
+              </div>
+              <div style="padding:10px 18px 0; display:flex; gap:9px;">
+                <div style="flex:1; display:flex; flex-direction:column; gap:9px;">
+                  <div class="press" style="height:160px; border-radius:14px; background:linear-gradient(135deg,var(--maroon),var(--primary)); position:relative; display:flex; align-items:flex-end; padding:11px;"><span style="font-size:9px; font-family:monospace; color:rgba(255,255,255,.5); position:absolute; top:10px; left:11px;">photo</span><span style="font-size:11px; font-weight:600; color:#fff;">Eid Milad 2025</span></div>
+                  <div class="press" style="height:108px; border-radius:14px; background:repeating-linear-gradient(45deg,var(--surface-2),var(--surface-2) 9px,var(--border) 9px,var(--border) 10px); border:1px solid var(--border); position:relative; display:flex; align-items:center; justify-content:center;"><div style="width:38px; height:38px; border-radius:50%; background:rgba(0,0,0,.45); display:flex; align-items:center; justify-content:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div><span style="position:absolute; bottom:7px; right:9px; font-size:9px; font-weight:700; color:#fff; background:rgba(0,0,0,.5); padding:2px 6px; border-radius:6px;">2:14</span></div>
+                  <div class="press" style="height:130px; border-radius:14px; background:linear-gradient(135deg,#3F6B50,#5C8A6A); position:relative; display:flex; align-items:flex-end; padding:11px;"><span style="font-size:11px; font-weight:600; color:#fff;">Park Renovation</span></div>
+                </div>
+                <div style="flex:1; display:flex; flex-direction:column; gap:9px;">
+                  <div class="press" style="height:120px; border-radius:14px; background:repeating-linear-gradient(45deg,var(--surface-2),var(--surface-2) 9px,var(--border) 9px,var(--border) 10px); border:1px solid var(--border); position:relative; display:flex; align-items:flex-end; padding:11px;"><span style="font-size:9px; font-family:monospace; color:var(--light); position:absolute; top:10px; left:11px;">photo</span><span style="font-size:11px; font-weight:600; color:var(--mid);">Independence Day</span></div>
+                  <div class="press" style="height:158px; border-radius:14px; background:linear-gradient(135deg,var(--amber),var(--gold)); position:relative; display:flex; align-items:flex-end; padding:11px;"><span style="font-size:11px; font-weight:600; color:#fff;">Sports Gala</span></div>
+                  <div class="press" style="height:100px; border-radius:14px; background:repeating-linear-gradient(45deg,var(--surface-2),var(--surface-2) 9px,var(--border) 9px,var(--border) 10px); border:1px solid var(--border); display:flex; align-items:center; justify-content:center;"><span style="font-size:11px; font-weight:600; color:var(--mid);">+ 42 more</span></div>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- ========== SOS (tab) ========== -->
+          <sc-if value="{{ s_sos }}">
+            <div class="screen-enter" style="position:absolute; inset:0; background:radial-gradient(circle at 50% 38%, #2A130C, var(--maroon) 70%); display:flex; flex-direction:column; align-items:center; padding:74px 26px 110px;">
+              <div style="font-size:13px; font-weight:600; color:rgba(255,255,255,.65); letter-spacing:2px;">EMERGENCY ALERT</div>
+              <div style="font-size:13px; color:rgba(255,255,255,.55); margin-top:6px;">Press &amp; hold to alert security + MC</div>
+              <div style="flex:1; display:flex; align-items:center; justify-content:center;">
+                <div class="press" style="width:200px; height:200px; border-radius:50%; background:rgba(255,255,255,.06); display:flex; align-items:center; justify-content:center; border:1px solid rgba(255,255,255,.1);">
+                  <div style="width:150px; height:150px; border-radius:50%; background:var(--danger); display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 14px 40px rgba(191,59,43,.6); animation:sosPulse 2s infinite;">
+                    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M7 18v-6a5 5 0 0 1 10 0v6"/><path d="M5 18h14M9 22h6M12 2v2"/></svg>
+                    <div style="font-size:24px; font-weight:800; color:#fff; letter-spacing:3px; margin-top:6px;">SOS</div>
+                  </div>
+                </div>
+              </div>
+              <div style="width:100%; display:flex; flex-direction:column; gap:11px;">
+                <div style="display:flex; align-items:center; gap:13px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); border-radius:15px; padding:14px;">
+                  <div style="width:44px; height:44px; border-radius:12px; background:rgba(255,255,255,.12); display:flex; align-items:center; justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+                  <div style="flex:1;"><div style="font-size:13.5px; font-weight:600; color:#fff;">Society Guard — Gate 1</div><div style="font-size:12px; color:rgba(255,255,255,.6);">0301-2345678</div></div>
+                  <div style="width:38px; height:38px; border-radius:50%; background:var(--success); display:flex; align-items:center; justify-content:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.3 21 3 13.7 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.3 1z"/></svg></div>
+                </div>
+                <div style="text-align:center; font-size:11.5px; color:rgba(255,255,255,.5);">Last alert: none today · Your location will be shared</div>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- ========== VISITORS ========== -->
+          <sc-if value="{{ s_visitors }}">
+            <div class="screen-enter" style="min-height:100%; padding-bottom:24px; position:relative;">
+              <div style="padding:54px 18px 14px; background:var(--surface); border-bottom:1px solid var(--border); display:flex; align-items:center; gap:13px; position:sticky; top:0; z-index:30;">
+                <div onClick="{{ back }}" class="press" style="width:38px; height:38px; border-radius:11px; background:var(--bg); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></div>
+                <div style="font-size:18px; font-weight:700; color:var(--ink);">Visitor Management</div>
+              </div>
+              <div style="padding:16px 18px 0; display:flex; gap:9px;">
+                <div style="flex:1; background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:13px; text-align:center; box-shadow:0 2px 8px var(--shadow);"><div style="font-size:20px; font-weight:700; color:var(--amber);">2</div><div style="font-size:11px; color:var(--mid); margin-top:2px;">Pending</div></div>
+                <div style="flex:1; background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:13px; text-align:center; box-shadow:0 2px 8px var(--shadow);"><div style="font-size:20px; font-weight:700; color:var(--success);">5</div><div style="font-size:11px; color:var(--mid); margin-top:2px;">Approved</div></div>
+                <div style="flex:1; background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:13px; text-align:center; box-shadow:0 2px 8px var(--shadow);"><div style="font-size:20px; font-weight:700; color:var(--primary);">3</div><div style="font-size:11px; color:var(--mid); margin-top:2px;">Today</div></div>
+              </div>
+              <div style="padding:18px 18px 0; font-size:13px; font-weight:700; color:var(--ink);">Expected Today</div>
+              <div style="padding:11px 18px 0; display:flex; flex-direction:column; gap:11px;">
+                <div data-screen="visitorPass" onClick="{{ nav }}" class="press" style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px; display:flex; align-items:center; gap:12px; box-shadow:0 2px 8px var(--shadow);">
+                  <div style="width:44px; height:44px; border-radius:50%; background:var(--primary-tint); display:flex; align-items:center; justify-content:center; color:var(--primary); font-weight:700; font-size:14px;">BK</div>
+                  <div style="flex:1;"><div style="font-size:14px; font-weight:600; color:var(--ink);">Bilal Khan</div><div style="font-size:11.5px; color:var(--mid); margin-top:2px;">Personal visit · Expected 4:00 PM</div></div>
+                  <span style="font-size:9.5px; font-weight:700; color:var(--success); background:var(--success-tint); padding:4px 9px; border-radius:11px;">APPROVED</span>
+                </div>
+                <div class="press" style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px; display:flex; align-items:center; gap:12px; box-shadow:0 2px 8px var(--shadow);">
+                  <div style="width:44px; height:44px; border-radius:50%; background:var(--amber-tint); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+                  <div style="flex:1;"><div style="font-size:14px; font-weight:600; color:var(--ink);">Foodpanda Delivery</div><div style="font-size:11.5px; color:var(--mid); margin-top:2px;">Delivery · Expected 1:30 PM</div></div>
+                  <span style="font-size:9.5px; font-weight:700; color:var(--amber); background:var(--amber-tint); padding:4px 9px; border-radius:11px;">PENDING</span>
+                </div>
+              </div>
+              <div data-screen="visitorPass" onClick="{{ nav }}" class="press" style="position:absolute; bottom:22px; right:20px; display:flex; align-items:center; gap:8px; background:var(--primary); padding:14px 20px; border-radius:30px; box-shadow:0 10px 24px var(--shadow); z-index:20;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg><span style="font-size:13px; font-weight:600; color:#fff;">Invite Guest</span></div>
+            </div>
+          </sc-if>
+
+          <!-- ========== VISITOR PASS ========== -->
+          <sc-if value="{{ s_visitorPass }}">
+            <div class="screen-enter" style="min-height:100%; padding-bottom:24px;">
+              <div style="padding:54px 18px 14px; background:var(--surface); border-bottom:1px solid var(--border); display:flex; align-items:center; gap:13px; position:sticky; top:0; z-index:30;">
+                <div onClick="{{ back }}" class="press" style="width:38px; height:38px; border-radius:11px; background:var(--bg); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></div>
+                <div style="font-size:18px; font-weight:700; color:var(--ink);">Guest Pass</div>
+              </div>
+              <div style="padding:22px 18px;">
+                <div style="background:var(--surface); border:1px solid var(--border); border-radius:20px; overflow:hidden; box-shadow:0 10px 30px var(--shadow);">
+                  <div style="background:var(--grad); padding:18px 20px; color:#fff;"><div style="font-size:11px; opacity:.8; letter-spacing:1px;">DIGITAL ENTRY PASS</div><div style="font-size:19px; font-weight:700; margin-top:3px;">Bilal Khan</div></div>
+                  <div style="padding:24px; display:flex; flex-direction:column; align-items:center;">
+                    <div style="width:170px; height:170px; background:#fff; border:1px solid var(--border); border-radius:16px; padding:12px; box-shadow:0 4px 14px var(--shadow);">
+                      <div style="width:100%; height:100%; background-image:repeating-linear-gradient(0deg,#1a1a1a 0,#1a1a1a 6px,#fff 6px,#fff 12px),repeating-linear-gradient(90deg,#1a1a1a 0,#1a1a1a 6px,#fff 6px,#fff 12px); background-blend-mode:multiply; border-radius:6px; position:relative;"><div style="position:absolute; top:8px; left:8px; width:34px; height:34px; border:6px solid #1a1a1a; background:#fff;"></div><div style="position:absolute; top:8px; right:8px; width:34px; height:34px; border:6px solid #1a1a1a; background:#fff;"></div><div style="position:absolute; bottom:8px; left:8px; width:34px; height:34px; border:6px solid #1a1a1a; background:#fff;"></div></div>
+                    </div>
+                    <div style="font-size:12px; color:var(--mid); margin-top:16px; text-align:center; line-height:1.7;">House <b style="color:var(--ink);">H-247, Block C</b><br>Valid: Today, 3:00 PM – 8:00 PM<br>Purpose: Personal visit</div>
+                    <div style="display:flex; align-items:center; gap:6px; margin-top:14px; background:var(--amber-tint); padding:6px 14px; border-radius:20px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span style="font-size:11.5px; font-weight:600; color:var(--amber);">Expires in 4h 18m</span></div>
+                  </div>
+                </div>
+                <button class="press" style="width:100%; background:#25D366; color:#fff; border:none; padding:15px; border-radius:14px; font-size:13.5px; font-weight:600; font-family:inherit; margin-top:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:9px;"><svg width="19" height="19" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2zm0 2a8 8 0 1 1-4.1 14.9l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 0 1 12 4z"/></svg>Share via WhatsApp</button>
+                <button class="press" style="width:100%; background:transparent; color:var(--primary); border:1.6px solid var(--primary); padding:14px; border-radius:14px; font-size:13.5px; font-weight:600; font-family:inherit; margin-top:11px; cursor:pointer;">Copy Pass Link</button>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- ========== COMMUNITY (tab) ========== -->
+          <sc-if value="{{ s_community }}">
+            <div class="screen-enter" style="min-height:100%; padding-bottom:100px;">
+              <div style="padding:56px 18px 0; background:var(--surface); border-bottom:1px solid var(--border);">
+                <div style="font-size:21px; font-weight:700; color:var(--ink);">Community</div>
+                <div style="display:flex; gap:6px; margin-top:14px; background:var(--surface-2); padding:5px; border-radius:13px; margin-bottom:14px;">
+                  <div data-mode="feed" onClick="{{ setCommunity }}" class="press" style="flex:1; text-align:center; padding:9px; border-radius:9px; font-size:13px; font-weight:600; color:{{ comFeed_c }}; background:{{ comFeed_bg }};">Feed</div>
+                  <div data-mode="market" onClick="{{ setCommunity }}" class="press" style="flex:1; text-align:center; padding:9px; border-radius:9px; font-size:13px; font-weight:600; color:{{ comMarket_c }}; background:{{ comMarket_bg }};">Marketplace</div>
+                </div>
+              </div>
+
+              <sc-if value="{{ modeFeed }}">
+                <div style="padding:14px 18px 0; display:flex; flex-direction:column; gap:12px;">
+                  <div style="background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:15px; box-shadow:0 2px 8px var(--shadow);">
+                    <div style="display:flex; align-items:center; gap:11px;"><div style="width:40px; height:40px; border-radius:50%; background:var(--primary-tint); display:flex; align-items:center; justify-content:center; color:var(--primary); font-weight:700; font-size:13px;">SA</div><div style="flex:1;"><div style="display:flex; align-items:center; gap:6px;"><span style="font-size:13.5px; font-weight:600; color:var(--ink);">Sana Aslam</span><svg width="13" height="13" viewBox="0 0 24 24" fill="var(--success)"><path d="m9 12 2 2 4-4" stroke="#fff" fill="none" stroke-width="2"/><circle cx="12" cy="12" r="10" fill="none" stroke="var(--success)" stroke-width="2"/></svg></div><div style="font-size:11px; color:var(--light);">H-118, Block A · 1h ago</div></div><span style="font-size:9px; font-weight:700; color:var(--success); background:var(--success-tint); padding:3px 7px; border-radius:9px;">MC ✓</span></div>
+                    <div style="font-size:13.5px; color:var(--ink); line-height:1.55; margin-top:11px;">Lost a grey Persian cat near Block A park 🐈 Please contact if seen. Very friendly, wears a blue collar.</div>
+                    <div style="height:150px; border-radius:12px; background:repeating-linear-gradient(45deg,var(--surface-2),var(--surface-2) 9px,var(--border) 9px,var(--border) 10px); border:1px solid var(--border); margin-top:11px; display:flex; align-items:center; justify-content:center;"><span style="font-size:10px; font-family:monospace; color:var(--light);">photo attachment</span></div>
+                    <div style="display:flex; gap:20px; margin-top:12px; padding-top:11px; border-top:1px solid var(--border);"><div style="display:flex; align-items:center; gap:6px; color:var(--mid);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--mid)" stroke-width="1.8"><path d="M19 14c1.5-1.5 3-3.3 3-5.5A4.5 4.5 0 0 0 12 6 4.5 4.5 0 0 0 2 8.5c0 2.2 1.5 4 3 5.5l7 7z"/></svg><span style="font-size:12px;">24</span></div><div style="display:flex; align-items:center; gap:6px; color:var(--mid);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--mid)" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span style="font-size:12px;">8</span></div><div style="display:flex; align-items:center; gap:6px; color:var(--mid); margin-left:auto;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--mid)" stroke-width="1.8"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/></svg></div></div>
+                  </div>
+                  <div style="background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:15px; box-shadow:0 2px 8px var(--shadow);">
+                    <div style="display:flex; align-items:center; gap:11px;"><div style="width:40px; height:40px; border-radius:50%; background:var(--amber-tint); display:flex; align-items:center; justify-content:center; color:var(--amber); font-weight:700; font-size:13px;">UM</div><div style="flex:1;"><span style="font-size:13.5px; font-weight:600; color:var(--ink);">Usman Malik</span><div style="font-size:11px; color:var(--light);">H-302, Block D · 3h ago</div></div><span style="font-size:9px; font-weight:700; color:var(--amber); background:var(--amber-tint); padding:3px 7px; border-radius:9px;">HELP</span></div>
+                    <div style="font-size:13.5px; color:var(--ink); line-height:1.55; margin-top:11px;">Can anyone recommend a reliable AC technician within the society? Mine stopped cooling. Thanks!</div>
+                    <div style="display:flex; gap:20px; margin-top:12px; padding-top:11px; border-top:1px solid var(--border);"><div style="display:flex; align-items:center; gap:6px; color:var(--mid);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--mid)" stroke-width="1.8"><path d="M19 14c1.5-1.5 3-3.3 3-5.5A4.5 4.5 0 0 0 12 6 4.5 4.5 0 0 0 2 8.5c0 2.2 1.5 4 3 5.5l7 7z"/></svg><span style="font-size:12px;">12</span></div><div style="display:flex; align-items:center; gap:6px; color:var(--mid);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--mid)" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span style="font-size:12px;">15</span></div></div>
+                  </div>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ modeMarket }}">
+                <div style="padding:14px 18px 0;">
+                  <div style="display:flex; gap:8px; margin-bottom:14px;"><div style="flex:1; display:flex; align-items:center; gap:8px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:11px 13px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--light)" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><span style="font-size:13px; color:var(--light);">Search listings</span></div><div style="width:44px; height:44px; border-radius:12px; background:var(--primary); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M3 6h18M7 12h10M11 18h2"/></svg></div></div>
+                  <div style="display:flex; gap:9px;">
+                    <div style="flex:1; display:flex; flex-direction:column; gap:9px;">
+                      <div data-screen="listingDetail" onClick="{{ nav }}" class="press" style="background:var(--surface); border:1px solid var(--border); border-radius:14px; overflow:hidden; box-shadow:0 2px 8px var(--shadow);"><div style="height:120px; background:repeating-linear-gradient(45deg,var(--surface-2),var(--surface-2) 9px,var(--border) 9px,var(--border) 10px); position:relative;"><span style="position:absolute; top:8px; left:8px; font-size:9px; font-weight:700; color:#fff; background:var(--danger); padding:3px 8px; border-radius:8px;">LIVE BID</span></div><div style="padding:11px;"><div style="font-size:13px; font-weight:600; color:var(--ink);">Sofa Set (5-seater)</div><div style="font-size:15px; font-weight:700; color:var(--primary); margin-top:3px;">PKR 32,000</div><div style="font-size:10.5px; color:var(--light); margin-top:3px;">Ends in 2h · H-204</div></div></div>
+                      <div class="press" style="background:var(--surface); border:1px solid var(--border); border-radius:14px; overflow:hidden; box-shadow:0 2px 8px var(--shadow);"><div style="height:140px; background:linear-gradient(135deg,#3F6B50,#5C8A6A);"></div><div style="padding:11px;"><div style="font-size:13px; font-weight:600; color:var(--ink);">Cycle — Kids</div><div style="font-size:15px; font-weight:700; color:var(--primary); margin-top:3px;">PKR 6,500</div><div style="font-size:10.5px; color:var(--light); margin-top:3px;">Fixed · H-77</div></div></div>
+                    </div>
+                    <div style="flex:1; display:flex; flex-direction:column; gap:9px;">
+                      <div class="press" style="background:var(--surface); border:1px solid var(--border); border-radius:14px; overflow:hidden; box-shadow:0 2px 8px var(--shadow);"><div style="height:150px; background:linear-gradient(135deg,var(--amber),var(--gold));"></div><div style="padding:11px;"><div style="font-size:13px; font-weight:600; color:var(--ink);">Study Table</div><div style="font-size:15px; font-weight:700; color:var(--primary); margin-top:3px;">PKR 9,000</div><div style="font-size:10.5px; color:var(--light); margin-top:3px;">Fixed · Negotiable · H-150</div></div></div>
+                      <div class="press" style="background:var(--surface); border:1px solid var(--border); border-radius:14px; overflow:hidden; box-shadow:0 2px 8px var(--shadow);"><div style="height:110px; background:repeating-linear-gradient(45deg,var(--surface-2),var(--surface-2) 9px,var(--border) 9px,var(--border) 10px);"></div><div style="padding:11px;"><div style="font-size:13px; font-weight:600; color:var(--ink);">Microwave Oven</div><div style="font-size:15px; font-weight:700; color:var(--primary); margin-top:3px;">PKR 11,500</div><div style="font-size:10.5px; color:var(--light); margin-top:3px;">Fixed · H-289</div></div></div>
+                    </div>
+                  </div>
+                </div>
+              </sc-if>
+            </div>
+          </sc-if>
+
+          <!-- ========== LISTING DETAIL (live bid) ========== -->
+          <sc-if value="{{ s_listingDetail }}">
+            <div class="screen-enter" style="min-height:100%; padding-bottom:24px;">
+              <div style="height:250px; background:repeating-linear-gradient(45deg,var(--surface-2),var(--surface-2) 11px,var(--border) 11px,var(--border) 12px); position:relative;">
+                <div onClick="{{ back }}" class="press" style="position:absolute; top:52px; left:18px; width:38px; height:38px; border-radius:11px; background:rgba(0,0,0,.35); backdrop-filter:blur(6px); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></div>
+                <span style="position:absolute; top:58px; right:20px; font-size:9px; font-weight:700; color:#fff; background:var(--danger); padding:4px 10px; border-radius:10px;">LIVE BID</span>
+                <span style="position:absolute; bottom:14px; left:50%; transform:translateX(-50%); font-size:10px; font-family:monospace; color:var(--light);">product photo</span>
+              </div>
+              <div style="padding:18px;">
+                <div style="font-size:20px; font-weight:700; color:var(--ink);">Sofa Set — 5 Seater</div>
+                <div style="font-size:13px; color:var(--mid); margin-top:5px;">Excellent condition · 2 years used · Block B</div>
+                <div style="display:flex; align-items:center; gap:11px; margin-top:14px; padding:13px; background:var(--surface); border:1px solid var(--border); border-radius:14px;">
+                  <div style="width:40px; height:40px; border-radius:50%; background:var(--primary-tint); display:flex; align-items:center; justify-content:center; color:var(--primary); font-weight:700; font-size:13px;">FH</div>
+                  <div style="flex:1;"><div style="font-size:13.5px; font-weight:600; color:var(--ink);">Farhan Habib</div><div style="font-size:11.5px; color:var(--light);">★ 4.8 · Member since 2023</div></div>
+                  <div style="width:38px; height:38px; border-radius:11px; background:var(--primary-tint); display:flex; align-items:center; justify-content:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+                </div>
+                <div style="background:var(--maroon); border-radius:16px; padding:16px 18px; margin-top:16px; color:#fff;">
+                  <div style="display:flex; justify-content:space-between; align-items:center;"><div><div style="font-size:11px; opacity:.75;">Current highest bid</div><div style="font-size:26px; font-weight:700; margin-top:2px;">PKR 32,000</div></div><div style="text-align:right;"><div style="font-size:11px; opacity:.75;">Ends in</div><div style="font-size:18px; font-weight:700; color:#FFB4A6;">01:58:42</div></div></div>
+                  <div style="display:flex; gap:9px; margin-top:14px;"><input value="Enter your bid (min 32,500)" readonly style="flex:1; border:none; border-radius:11px; padding:12px; font-size:12.5px; font-family:inherit; background:rgba(255,255,255,.15); color:rgba(255,255,255,.7); outline:none;"/><button class="press" style="background:var(--amber); color:#fff; border:none; padding:0 20px; border-radius:11px; font-size:13px; font-weight:700; font-family:inherit; cursor:pointer;">BID</button></div>
+                  <div style="font-size:10.5px; opacity:.65; margin-top:8px;">Security deposit of PKR 1,000 frozen on bid · refunded if outbid</div>
+                </div>
+                <div style="font-size:12.5px; font-weight:700; color:var(--ink); margin-top:18px; margin-bottom:10px;">Bid History</div>
+                <div style="display:flex; flex-direction:column; gap:9px;">
+                  <div style="display:flex; align-items:center; gap:10px;"><div style="width:30px; height:30px; border-radius:50%; background:var(--success-tint); display:flex; align-items:center; justify-content:center; color:var(--success); font-weight:700; font-size:11px;">AK</div><span style="flex:1; font-size:12.5px; color:var(--ink);">A. Khalid</span><span style="font-size:13px; font-weight:700; color:var(--success);">PKR 32,000</span></div>
+                  <div style="display:flex; align-items:center; gap:10px; opacity:.7;"><div style="width:30px; height:30px; border-radius:50%; background:var(--primary-tint); display:flex; align-items:center; justify-content:center; color:var(--primary); font-weight:700; font-size:11px;">RS</div><span style="flex:1; font-size:12.5px; color:var(--ink);">R. Shah</span><span style="font-size:13px; font-weight:600; color:var(--mid);">PKR 31,000</span></div>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- ========== POLLS ========== -->
+          <sc-if value="{{ s_polls }}">
+            <div class="screen-enter" style="min-height:100%; padding-bottom:24px;">
+              <div style="padding:54px 18px 14px; background:var(--surface); border-bottom:1px solid var(--border); display:flex; align-items:center; gap:13px; position:sticky; top:0; z-index:30;">
+                <div onClick="{{ back }}" class="press" style="width:38px; height:38px; border-radius:11px; background:var(--bg); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></div>
+                <div style="font-size:18px; font-weight:700; color:var(--ink);">Polls &amp; Voting</div>
+              </div>
+              <div style="padding:18px;">
+                <div style="font-size:13px; font-weight:700; color:var(--ink); margin-bottom:12px;">Active Poll</div>
+                <div style="background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:17px; box-shadow:0 4px 14px var(--shadow);">
+                  <div style="display:flex; align-items:center; gap:8px;"><span style="font-size:9.5px; font-weight:700; color:var(--danger); background:var(--danger-tint); padding:3px 9px; border-radius:10px;">CLOSES IN 2 DAYS</span><span style="font-size:11px; color:var(--light);">86 votes</span></div>
+                  <div style="font-size:16px; font-weight:700; color:var(--ink); margin-top:11px; line-height:1.4;">Should we install solar panels on common-area rooftops?</div>
+                  <div style="display:flex; flex-direction:column; gap:10px; margin-top:15px;">
+                    <div class="press" style="display:flex; align-items:center; gap:11px; border:2px solid var(--primary); background:var(--primary-tint); border-radius:12px; padding:13px;"><div style="width:20px; height:20px; border-radius:50%; border:2px solid var(--primary); display:flex; align-items:center; justify-content:center;"><div style="width:10px; height:10px; border-radius:50%; background:var(--primary);"></div></div><span style="font-size:13.5px; font-weight:600; color:var(--ink);">Yes, invest in solar</span></div>
+                    <div class="press" style="display:flex; align-items:center; gap:11px; border:1.5px solid var(--border); border-radius:12px; padding:13px;"><div style="width:20px; height:20px; border-radius:50%; border:2px solid var(--border);"></div><span style="font-size:13.5px; color:var(--ink);">No, not right now</span></div>
+                    <div class="press" style="display:flex; align-items:center; gap:11px; border:1.5px solid var(--border); border-radius:12px; padding:13px;"><div style="width:20px; height:20px; border-radius:50%; border:2px solid var(--border);"></div><span style="font-size:13.5px; color:var(--ink);">Need more information</span></div>
+                  </div>
+                  <button data-screen="pollResults" onClick="{{ nav }}" class="press" style="width:100%; background:var(--grad); color:#fff; border:none; padding:14px; border-radius:12px; font-size:13.5px; font-weight:600; font-family:inherit; letter-spacing:.4px; margin-top:14px; cursor:pointer;">SUBMIT VOTE</button>
+                  <div style="text-align:center; font-size:11px; color:var(--light); margin-top:9px;">🔒 Your vote is anonymous</div>
+                </div>
+                <div style="font-size:13px; font-weight:700; color:var(--ink); margin:20px 0 12px;">Past Polls</div>
+                <div data-screen="pollResults" onClick="{{ nav }}" class="press" style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px; box-shadow:0 2px 8px var(--shadow); display:flex; align-items:center; gap:11px;"><div style="width:40px; height:40px; border-radius:11px; background:var(--success-tint); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></div><div style="flex:1;"><div style="font-size:13.5px; font-weight:600; color:var(--ink);">New gym equipment purchase</div><div style="font-size:11px; color:var(--light); margin-top:1px;">Closed · You voted Yes</div></div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--light)" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- ========== POLL RESULTS ========== -->
+          <sc-if value="{{ s_pollResults }}">
+            <div class="screen-enter" style="min-height:100%; padding-bottom:24px;">
+              <div style="padding:54px 18px 14px; background:var(--surface); border-bottom:1px solid var(--border); display:flex; align-items:center; gap:13px; position:sticky; top:0; z-index:30;">
+                <div onClick="{{ back }}" class="press" style="width:38px; height:38px; border-radius:11px; background:var(--bg); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></div>
+                <div style="font-size:18px; font-weight:700; color:var(--ink);">Poll Results</div>
+              </div>
+              <div style="padding:18px;">
+                <div style="font-size:17px; font-weight:700; color:var(--ink); line-height:1.4;">Should we install solar panels on common-area rooftops?</div>
+                <div style="font-size:12px; color:var(--mid); margin-top:6px;">86 residents voted · Your vote: Yes</div>
+                <div style="margin-top:20px; display:flex; flex-direction:column; gap:16px;">
+                  <div><div style="display:flex; justify-content:space-between; margin-bottom:7px;"><span style="font-size:13.5px; font-weight:600; color:var(--ink); display:flex; align-items:center; gap:6px;">Yes, invest in solar <svg width="13" height="13" viewBox="0 0 24 24" fill="var(--gold)"><path d="M12 2 15 9l7 .5-5.5 4.5 2 7-6.5-4-6.5 4 2-7L2 9.5 9 9z"/></svg></span><span style="font-size:13.5px; font-weight:700; color:var(--success);">64%</span></div><div style="height:11px; border-radius:6px; background:var(--surface-2); overflow:hidden;"><div style="width:64%; height:100%; border-radius:6px; background:var(--success);"></div></div><div style="font-size:11px; color:var(--light); margin-top:4px;">55 votes</div></div>
+                  <div><div style="display:flex; justify-content:space-between; margin-bottom:7px;"><span style="font-size:13.5px; color:var(--ink);">No, not right now</span><span style="font-size:13.5px; font-weight:700; color:var(--mid);">22%</span></div><div style="height:11px; border-radius:6px; background:var(--surface-2); overflow:hidden;"><div style="width:22%; height:100%; border-radius:6px; background:var(--primary);"></div></div><div style="font-size:11px; color:var(--light); margin-top:4px;">19 votes</div></div>
+                  <div><div style="display:flex; justify-content:space-between; margin-bottom:7px;"><span style="font-size:13.5px; color:var(--ink);">Need more information</span><span style="font-size:13.5px; font-weight:700; color:var(--mid);">14%</span></div><div style="height:11px; border-radius:6px; background:var(--surface-2); overflow:hidden;"><div style="width:14%; height:100%; border-radius:6px; background:var(--amber);"></div></div><div style="font-size:11px; color:var(--light); margin-top:4px;">12 votes</div></div>
+                </div>
+                <div style="background:var(--success-tint); border-radius:14px; padding:14px; margin-top:20px; display:flex; align-items:center; gap:11px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="1.8"><circle cx="12" cy="8" r="6"/><path d="M9 18l-2 4M15 18l2 4"/></svg><span style="font-size:12.5px; color:var(--ink); line-height:1.5;"><b>Majority in favour.</b> The MC will proceed to gather solar installation quotes.</span></div>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- ========== PROFESSIONAL DIRECTORY ========== -->
+          <sc-if value="{{ s_directory }}">
+            <div class="screen-enter" style="min-height:100%; padding-bottom:24px;">
+              <div style="padding:54px 18px 14px; background:var(--surface); border-bottom:1px solid var(--border); display:flex; align-items:center; gap:13px; position:sticky; top:0; z-index:30;">
+                <div onClick="{{ back }}" class="press" style="width:38px; height:38px; border-radius:11px; background:var(--bg); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></div>
+                <div style="font-size:18px; font-weight:700; color:var(--ink);">Professionals</div>
+              </div>
+              <div style="padding:16px 18px 0;">
+                <div style="display:flex; align-items:center; gap:8px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:11px 13px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--light)" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><span style="font-size:13px; color:var(--light);">Search doctors, lawyers...</span></div>
+                <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:9px; margin-top:14px;">
+                  <div class="press" style="text-align:center; padding:15px 6px; border-radius:14px; background:var(--surface); border:1px solid var(--border);"><div style="width:40px; height:40px; margin:0 auto; border-radius:12px; background:var(--primary-tint); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zM12 14v4M10 16h4"/></svg></div><div style="font-size:11px; color:var(--ink); margin-top:7px; font-weight:500;">Doctor</div></div>
+                  <div class="press" style="text-align:center; padding:15px 6px; border-radius:14px; background:var(--surface); border:1px solid var(--border);"><div style="width:40px; height:40px; margin:0 auto; border-radius:12px; background:var(--amber-tint); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.8"><path d="M3 6l9-3 9 3M12 3v18M5 10l-2 5h4zM19 10l-2 5h4z"/></svg></div><div style="font-size:11px; color:var(--ink); margin-top:7px; font-weight:500;">Lawyer</div></div>
+                  <div class="press" style="text-align:center; padding:15px 6px; border-radius:14px; background:var(--surface); border:1px solid var(--border);"><div style="width:40px; height:40px; margin:0 auto; border-radius:12px; background:var(--success-tint); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="1.8"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h5"/></svg></div><div style="font-size:11px; color:var(--ink); margin-top:7px; font-weight:500;">Accountant</div></div>
+                </div>
+                <div style="font-size:13px; font-weight:700; color:var(--ink); margin:20px 0 12px;">Featured · Verified by MC</div>
+                <div style="display:flex; flex-direction:column; gap:11px;">
+                  <div class="press" style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px; display:flex; align-items:center; gap:12px; box-shadow:0 2px 8px var(--shadow);">
+                    <div style="width:50px; height:50px; border-radius:50%; background:var(--primary-tint); display:flex; align-items:center; justify-content:center; color:var(--primary); font-weight:700; font-size:15px;">DR</div>
+                    <div style="flex:1;"><div style="display:flex; align-items:center; gap:6px;"><span style="font-size:14px; font-weight:600; color:var(--ink);">Dr. Ayesha Tariq</span><svg width="14" height="14" viewBox="0 0 24 24" fill="var(--primary)"><path d="m9 12 2 2 4-4" stroke="#fff" fill="none" stroke-width="2"/><circle cx="12" cy="12" r="10" fill="none" stroke="var(--primary)" stroke-width="2"/></svg></div><div style="font-size:12px; color:var(--mid); margin-top:2px;">Pediatrician · MBBS, FCPS</div><div style="font-size:11.5px; color:var(--amber); margin-top:3px;">★ 4.9 (32 reviews) · H-12</div></div>
+                    <div style="width:38px; height:38px; border-radius:11px; background:var(--success); display:flex; align-items:center; justify-content:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.3 21 3 13.7 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.3 1z"/></svg></div>
+                  </div>
+                  <div class="press" style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px; display:flex; align-items:center; gap:12px; box-shadow:0 2px 8px var(--shadow);">
+                    <div style="width:50px; height:50px; border-radius:50%; background:var(--amber-tint); display:flex; align-items:center; justify-content:center; color:var(--amber); font-weight:700; font-size:15px;">MK</div>
+                    <div style="flex:1;"><div style="display:flex; align-items:center; gap:6px;"><span style="font-size:14px; font-weight:600; color:var(--ink);">Adv. Moeen Khan</span><svg width="14" height="14" viewBox="0 0 24 24" fill="var(--primary)"><path d="m9 12 2 2 4-4" stroke="#fff" fill="none" stroke-width="2"/><circle cx="12" cy="12" r="10" fill="none" stroke="var(--primary)" stroke-width="2"/></svg></div><div style="font-size:12px; color:var(--mid); margin-top:2px;">Corporate Lawyer · LLB</div><div style="font-size:11.5px; color:var(--amber); margin-top:3px;">★ 4.7 (18 reviews) · H-205</div></div>
+                    <div style="width:38px; height:38px; border-radius:11px; background:var(--success); display:flex; align-items:center; justify-content:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.3 21 3 13.7 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.3 1z"/></svg></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- ========== SKILLED LABOUR ========== -->
+          <sc-if value="{{ s_labour }}">
+            <div class="screen-enter" style="min-height:100%; padding-bottom:24px;">
+              <div style="padding:54px 18px 14px; background:var(--surface); border-bottom:1px solid var(--border); display:flex; align-items:center; gap:13px; position:sticky; top:0; z-index:30;">
+                <div onClick="{{ back }}" class="press" style="width:38px; height:38px; border-radius:11px; background:var(--bg); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></div>
+                <div style="font-size:18px; font-weight:700; color:var(--ink);">Skilled Labour</div>
+              </div>
+              <div style="padding:16px 18px 0;">
+                <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:9px;">
+                  <div class="press" style="text-align:center;"><div style="width:48px; height:48px; margin:0 auto; border-radius:14px; background:var(--amber-tint); display:flex; align-items:center; justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.7"><path d="M14 4l6 6-4 4-6-6zM10 8 3 15v6h6l7-7"/></svg></div><div style="font-size:10.5px; color:var(--mid); margin-top:5px;">Plumber</div></div>
+                  <div class="press" style="text-align:center;"><div style="width:48px; height:48px; margin:0 auto; border-radius:14px; background:var(--primary-tint); display:flex; align-items:center; justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.7"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg></div><div style="font-size:10.5px; color:var(--mid); margin-top:5px;">Electrician</div></div>
+                  <div class="press" style="text-align:center;"><div style="width:48px; height:48px; margin:0 auto; border-radius:14px; background:var(--success-tint); display:flex; align-items:center; justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="1.7"><path d="M18 3 3 18l3 3L21 6zM14 7l3 3"/></svg></div><div style="font-size:10.5px; color:var(--mid); margin-top:5px;">Painter</div></div>
+                  <div class="press" style="text-align:center;"><div style="width:48px; height:48px; margin:0 auto; border-radius:14px; background:var(--amber-tint); display:flex; align-items:center; justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.7"><path d="M2 20h20M5 20V8l7-5 7 5v12M9 20v-6h6v6"/></svg></div><div style="font-size:10.5px; color:var(--mid); margin-top:5px;">Carpenter</div></div>
+                </div>
+                <div style="display:flex; gap:8px; margin-top:16px;"><span style="font-size:11.5px; font-weight:600; color:#fff; background:var(--success); padding:7px 13px; border-radius:18px;">● Available Now</span><span style="font-size:11.5px; font-weight:600; color:var(--mid); background:var(--surface); border:1px solid var(--border); padding:7px 13px; border-radius:18px;">Highest Rated</span></div>
+                <div style="margin-top:16px; display:flex; flex-direction:column; gap:11px;">
+                  <div class="press" style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px; display:flex; align-items:center; gap:12px; box-shadow:0 2px 8px var(--shadow);">
+                    <div style="position:relative;"><div style="width:50px; height:50px; border-radius:50%; background:var(--amber-tint); display:flex; align-items:center; justify-content:center; color:var(--amber); font-weight:700; font-size:14px;">RA</div><span style="position:absolute; bottom:1px; right:1px; width:13px; height:13px; border-radius:50%; background:var(--success); border:2px solid var(--surface);"></span></div>
+                    <div style="flex:1;"><div style="display:flex; align-items:center; gap:6px;"><span style="font-size:14px; font-weight:600; color:var(--ink);">Rashid Ali</span><svg width="13" height="13" viewBox="0 0 24 24" fill="var(--primary)"><path d="m9 12 2 2 4-4" stroke="#fff" fill="none" stroke-width="2"/><circle cx="12" cy="12" r="10" fill="none" stroke="var(--primary)" stroke-width="2"/></svg></div><div style="font-size:12px; color:var(--mid); margin-top:2px;">Plumber · 8 yrs exp</div><div style="font-size:11.5px; color:var(--amber); margin-top:3px;">★ 4.8 · PKR 1,500/job</div></div>
+                    <span style="font-size:11px; font-weight:700; color:#fff; background:var(--primary); padding:8px 13px; border-radius:18px;">Hire</span>
+                  </div>
+                  <div class="press" style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px; display:flex; align-items:center; gap:12px; box-shadow:0 2px 8px var(--shadow);">
+                    <div style="position:relative;"><div style="width:50px; height:50px; border-radius:50%; background:var(--primary-tint); display:flex; align-items:center; justify-content:center; color:var(--primary); font-weight:700; font-size:14px;">IB</div><span style="position:absolute; bottom:1px; right:1px; width:13px; height:13px; border-radius:50%; background:var(--light); border:2px solid var(--surface);"></span></div>
+                    <div style="flex:1;"><div style="display:flex; align-items:center; gap:6px;"><span style="font-size:14px; font-weight:600; color:var(--ink);">Imran Bashir</span><svg width="13" height="13" viewBox="0 0 24 24" fill="var(--primary)"><path d="m9 12 2 2 4-4" stroke="#fff" fill="none" stroke-width="2"/><circle cx="12" cy="12" r="10" fill="none" stroke="var(--primary)" stroke-width="2"/></svg></div><div style="font-size:12px; color:var(--mid); margin-top:2px;">Electrician · 12 yrs exp</div><div style="font-size:11.5px; color:var(--amber); margin-top:3px;">★ 4.9 · PKR 2,000/day</div></div>
+                    <span style="font-size:11px; font-weight:700; color:var(--mid); background:var(--surface-2); border:1px solid var(--border); padding:8px 13px; border-radius:18px;">Hire</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- ========== NOTIFICATIONS ========== -->
+          <sc-if value="{{ s_notifications }}">
+            <div class="screen-enter" style="min-height:100%; padding-bottom:24px;">
+              <div style="padding:54px 18px 14px; background:var(--surface); border-bottom:1px solid var(--border); display:flex; align-items:center; gap:13px; position:sticky; top:0; z-index:30;">
+                <div onClick="{{ back }}" class="press" style="width:38px; height:38px; border-radius:11px; background:var(--bg); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></div>
+                <div style="font-size:18px; font-weight:700; color:var(--ink);">Notifications</div>
+                <span style="margin-left:auto; font-size:12px; font-weight:600; color:var(--primary);">Mark all read</span>
+              </div>
+              <div class="scr" style="display:flex; gap:8px; overflow-x:auto; padding:14px 18px 6px;">
+                <span style="flex:0 0 auto; font-size:12px; font-weight:600; color:#fff; background:var(--primary); padding:7px 14px; border-radius:18px;">All</span>
+                <span style="flex:0 0 auto; font-size:12px; font-weight:600; color:var(--mid); background:var(--surface); border:1px solid var(--border); padding:7px 14px; border-radius:18px;">Bills</span>
+                <span style="flex:0 0 auto; font-size:12px; font-weight:600; color:var(--mid); background:var(--surface); border:1px solid var(--border); padding:7px 14px; border-radius:18px;">Complaints</span>
+                <span style="flex:0 0 auto; font-size:12px; font-weight:600; color:var(--mid); background:var(--surface); border:1px solid var(--border); padding:7px 14px; border-radius:18px;">Events</span>
+              </div>
+              <div style="padding:8px 18px 0; font-size:11px; font-weight:700; color:var(--light); letter-spacing:.5px;">TODAY</div>
+              <div style="padding:8px 18px 0; display:flex; flex-direction:column; gap:9px;">
+                <div style="display:flex; gap:12px; padding:13px; background:var(--primary-tint); border-radius:13px; border-left:3px solid var(--primary);"><div style="width:40px; height:40px; border-radius:11px; background:var(--surface); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div style="flex:1;"><div style="font-size:13px; font-weight:600; color:var(--ink);">June bill due in 3 days</div><div style="font-size:12px; color:var(--mid); margin-top:2px; line-height:1.4;">Pay PKR 2,500 before 30 June to avoid late penalty.</div><div style="font-size:11px; color:var(--light); margin-top:4px;">2 hours ago</div></div></div>
+                <div style="display:flex; gap:12px; padding:13px; background:var(--primary-tint); border-radius:13px; border-left:3px solid var(--primary);"><div style="width:40px; height:40px; border-radius:11px; background:var(--surface); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="1.8"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/></svg></div><div style="flex:1;"><div style="font-size:13px; font-weight:600; color:var(--ink);">Complaint #1042 updated</div><div style="font-size:12px; color:var(--mid); margin-top:2px; line-height:1.4;">MC responded — repair underway, resolving by 2 PM.</div><div style="font-size:11px; color:var(--light); margin-top:4px;">3 hours ago</div></div></div>
+              </div>
+              <div style="padding:16px 18px 0; font-size:11px; font-weight:700; color:var(--light); letter-spacing:.5px;">YESTERDAY</div>
+              <div style="padding:8px 18px 0; display:flex; flex-direction:column; gap:9px;">
+                <div style="display:flex; gap:12px; padding:13px; background:var(--surface); border:1px solid var(--border); border-radius:13px;"><div style="width:40px; height:40px; border-radius:11px; background:var(--primary-tint); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></div><div style="flex:1;"><div style="font-size:13px; font-weight:600; color:var(--ink);">New event: Eid Milad Celebration</div><div style="font-size:12px; color:var(--mid); margin-top:2px; line-height:1.4;">Sat 28 June, 6 PM at Central Lawn. RSVP now.</div><div style="font-size:11px; color:var(--light); margin-top:4px;">Yesterday</div></div></div>
+                <div style="display:flex; gap:12px; padding:13px; background:var(--surface); border:1px solid var(--border); border-radius:13px;"><div style="width:40px; height:40px; border-radius:11px; background:var(--success-tint); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></div><div style="flex:1;"><div style="font-size:13px; font-weight:600; color:var(--ink);">Visitor entry — Bilal Khan</div><div style="font-size:12px; color:var(--mid); margin-top:2px; line-height:1.4;">Your guest was granted entry at Gate 1.</div><div style="font-size:11px; color:var(--light); margin-top:4px;">Yesterday</div></div></div>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- ========== PROFILE (tab) ========== -->
+          <sc-if value="{{ s_profile }}">
+            <div class="screen-enter" style="min-height:100%; padding-bottom:100px;">
+              <div style="background:var(--grad); padding:60px 18px 56px; border-bottom-left-radius:28px; border-bottom-right-radius:28px; text-align:center; position:relative;">
+                <div data-screen="settings" onClick="{{ nav }}" class="press" style="position:absolute; top:56px; right:18px; width:38px; height:38px; border-radius:11px; background:rgba(255,255,255,.16); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+                <div style="width:84px; height:84px; border-radius:50%; background:rgba(255,255,255,.2); border:3px solid rgba(255,255,255,.5); margin:0 auto; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:28px;">AR</div>
+                <div style="font-size:20px; font-weight:700; color:#fff; margin-top:13px; display:flex; align-items:center; justify-content:center; gap:7px;">Ahsan Raza <svg width="17" height="17" viewBox="0 0 24 24" fill="var(--success)" stroke="#fff" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4" stroke="#fff" fill="none" stroke-width="2"/></svg></div>
+                <div style="font-size:12.5px; color:rgba(255,255,255,.78); margin-top:3px;">House H-247, Block C · Member since 2023</div>
+              </div>
+              <div style="margin:-32px 18px 0; background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:16px; display:flex; box-shadow:0 6px 18px var(--shadow);">
+                <div style="flex:1; text-align:center;"><div style="font-size:19px; font-weight:700; color:var(--primary);">14</div><div style="font-size:11px; color:var(--mid); margin-top:2px;">Payments</div></div>
+                <div style="flex:1; text-align:center; border-left:1px solid var(--border); border-right:1px solid var(--border);"><div style="font-size:19px; font-weight:700; color:var(--primary);">3</div><div style="font-size:11px; color:var(--mid); margin-top:2px;">Complaints</div></div>
+                <div style="flex:1; text-align:center;"><div style="font-size:19px; font-weight:700; color:var(--primary);">9</div><div style="font-size:11px; color:var(--mid); margin-top:2px;">Events</div></div>
+              </div>
+              <div style="padding:20px 18px 0; display:flex; flex-direction:column; gap:2px;">
+                <div data-screen="notifications" onClick="{{ nav }}" class="press" style="display:flex; align-items:center; gap:14px; padding:14px 4px;"><div style="width:38px; height:38px; border-radius:11px; background:var(--primary-tint); display:flex; align-items:center; justify-content:center;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div><span style="flex:1; font-size:14px; font-weight:500; color:var(--ink);">Notifications</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--light)" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+                <div style="height:1px; background:var(--border);"></div>
+                <div data-screen="settings" onClick="{{ nav }}" class="press" style="display:flex; align-items:center; gap:14px; padding:14px 4px;"><div style="width:38px; height:38px; border-radius:11px; background:var(--success-tint); display:flex; align-items:center; justify-content:center;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="1.8"><path d="M12.2 2h-.4a2 2 0 0 0-2 2v.2a8 8 0 0 0-2 1.2l-.2-.1a2 2 0 0 0-2.7.7l-.2.4a2 2 0 0 0 .7 2.7l.2.1a8 8 0 0 0 0 2.3l-.2.1a2 2 0 0 0-.7 2.7l.2.4a2 2 0 0 0 2.7.7l.2-.1a8 8 0 0 0 2 1.2v.2a2 2 0 0 0 2 2h.4a2 2 0 0 0 2-2v-.2a8 8 0 0 0 2-1.2l.2.1a2 2 0 0 0 2.7-.7l.2-.4a2 2 0 0 0-.7-2.7l-.2-.1a8 8 0 0 0 0-2.3l.2-.1a2 2 0 0 0 .7-2.7l-.2-.4a2 2 0 0 0-2.7-.7l-.2.1a8 8 0 0 0-2-1.2V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></div><span style="flex:1; font-size:14px; font-weight:500; color:var(--ink);">Settings</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--light)" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+                <div style="height:1px; background:var(--border);"></div>
+                <div data-screen="mcDashboard" onClick="{{ nav }}" class="press" style="display:flex; align-items:center; gap:14px; padding:14px 4px;"><div style="width:38px; height:38px; border-radius:11px; background:var(--amber-tint); display:flex; align-items:center; justify-content:center;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div><span style="flex:1; font-size:14px; font-weight:500; color:var(--ink);">MC Admin Panel</span><span style="font-size:10px; font-weight:700; color:var(--gold); background:var(--amber-tint); padding:3px 9px; border-radius:10px;">MC</span></div>
+                <div style="height:1px; background:var(--border);"></div>
+                <div class="press" style="display:flex; align-items:center; gap:14px; padding:14px 4px;"><div style="width:38px; height:38px; border-radius:11px; background:var(--danger-tint); display:flex; align-items:center; justify-content:center;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="1.8"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg></div><span style="flex:1; font-size:14px; font-weight:500; color:var(--danger);">Logout</span></div>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- ========== SETTINGS ========== -->
+          <sc-if value="{{ s_settings }}">
+            <div class="screen-enter" style="min-height:100%; padding-bottom:24px;">
+              <div style="padding:54px 18px 14px; background:var(--surface); border-bottom:1px solid var(--border); display:flex; align-items:center; gap:13px; position:sticky; top:0; z-index:30;">
+                <div onClick="{{ back }}" class="press" style="width:38px; height:38px; border-radius:11px; background:var(--bg); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></div>
+                <div style="font-size:18px; font-weight:700; color:var(--ink);">Settings</div>
+              </div>
+              <div style="padding:18px;">
+                <div style="font-size:11px; font-weight:700; color:var(--light); letter-spacing:.5px; margin-bottom:9px;">PREFERENCES</div>
+                <div style="background:var(--surface); border:1px solid var(--border); border-radius:14px; overflow:hidden; box-shadow:0 2px 8px var(--shadow);">
+                  <div style="display:flex; align-items:center; gap:13px; padding:14px; border-bottom:1px solid var(--border);"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="var(--mid)" stroke-width="1.8"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/></svg><span style="flex:1; font-size:13.5px; color:var(--ink);">Push Notifications</span><div style="width:42px; height:24px; border-radius:13px; background:var(--success); position:relative;"><div style="position:absolute; top:2px; right:2px; width:20px; height:20px; border-radius:50%; background:#fff;"></div></div></div>
+                  <div style="display:flex; align-items:center; gap:13px; padding:14px; border-bottom:1px solid var(--border);"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="var(--mid)" stroke-width="1.8"><path d="M7 18v-6a5 5 0 0 1 10 0v6"/><path d="M5 18h14"/></svg><span style="flex:1; font-size:13.5px; color:var(--ink);">SOS Alerts</span><span style="font-size:11px; color:var(--light); font-style:italic;">Always on</span><div style="width:42px; height:24px; border-radius:13px; background:var(--border); position:relative; opacity:.6;"><div style="position:absolute; top:2px; right:2px; width:20px; height:20px; border-radius:50%; background:var(--success);"></div></div></div>
+                  <div style="display:flex; align-items:center; gap:13px; padding:14px;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="var(--mid)" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg><span style="flex:1; font-size:13.5px; color:var(--ink);">Language</span><span style="font-size:12.5px; color:var(--mid);">English · اردو</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--light)" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+                </div>
+                <div style="font-size:11px; font-weight:700; color:var(--light); letter-spacing:.5px; margin:18px 0 9px;">APPEARANCE</div>
+                <div onClick="{{ toggleTheme }}" class="press" style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px; display:flex; align-items:center; gap:13px; box-shadow:0 2px 8px var(--shadow);"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="var(--mid)" stroke-width="1.8"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></svg><span style="flex:1; font-size:13.5px; color:var(--ink);">Dark Mode</span><span style="font-size:12px; color:var(--primary); font-weight:600;">Tap to toggle</span></div>
+                <div style="font-size:11px; font-weight:700; color:var(--light); letter-spacing:.5px; margin:18px 0 9px;">SUPPORT</div>
+                <div style="background:var(--surface); border:1px solid var(--border); border-radius:14px; overflow:hidden; box-shadow:0 2px 8px var(--shadow);">
+                  <div style="display:flex; align-items:center; gap:13px; padding:14px; border-bottom:1px solid var(--border);"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="var(--mid)" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></svg><span style="flex:1; font-size:13.5px; color:var(--ink);">Help &amp; Support</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--light)" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+                  <div style="display:flex; align-items:center; gap:13px; padding:14px;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="var(--mid)" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><span style="flex:1; font-size:13.5px; color:var(--ink);">About App</span><span style="font-size:11.5px; color:var(--light);">v1.0.0</span></div>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- ========== MC DASHBOARD ========== -->
+          <sc-if value="{{ s_mcDashboard }}">
+            <div class="screen-enter" style="min-height:100%; padding-bottom:24px;">
+              <div style="background:linear-gradient(140deg,#0F1F12,#1d3320); padding:54px 18px 22px;">
+                <div style="display:flex; align-items:center; gap:13px;">
+                  <div onClick="{{ back }}" class="press" style="width:38px; height:38px; border-radius:11px; background:rgba(255,255,255,.12); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></div>
+                  <div style="flex:1;"><div style="display:flex; align-items:center; gap:7px;"><span style="font-size:17px; font-weight:700; color:#fff;">MC Admin Panel</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div><div style="font-size:11.5px; color:rgba(255,255,255,.6);">WAPDA City · Management view</div></div>
+                </div>
+                <div style="display:flex; gap:9px; margin-top:18px;">
+                  <div style="flex:1; background:rgba(255,255,255,.08); border-radius:13px; padding:12px;"><div style="font-size:21px; font-weight:700; color:#fff;">847</div><div style="font-size:10.5px; color:rgba(255,255,255,.6); margin-top:1px;">Residents</div></div>
+                  <div style="flex:1; background:rgba(255,255,255,.08); border-radius:13px; padding:12px;"><div style="font-size:21px; font-weight:700; color:#74AC8A;">76%</div><div style="font-size:10.5px; color:rgba(255,255,255,.6); margin-top:1px;">Collected</div></div>
+                  <div style="flex:1; background:rgba(255,255,255,.08); border-radius:13px; padding:12px;"><div style="font-size:21px; font-weight:700; color:#D6A24C;">12</div><div style="font-size:10.5px; color:rgba(255,255,255,.6); margin-top:1px;">Open issues</div></div>
+                </div>
+              </div>
+              <div style="padding:18px;">
+                <div style="background:var(--danger-tint); border:1px solid var(--danger); border-radius:14px; padding:14px; display:flex; align-items:center; gap:12px;"><div style="width:42px; height:42px; border-radius:11px; background:var(--danger); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><span style="font-size:17px; font-weight:700; color:#fff;">9</span></div><div style="flex:1;"><div style="font-size:13.5px; font-weight:700; color:var(--danger);">Pending Approvals</div><div style="font-size:12px; color:var(--mid); margin-top:1px;">3 registrations · 4 posts · 2 listings</div></div><span style="font-size:11px; font-weight:700; color:#fff; background:var(--danger); padding:7px 13px; border-radius:18px;">Review</span></div>
+
+                <div style="font-size:13px; font-weight:700; color:var(--ink); margin:18px 0 11px;">Quick Actions</div>
+                <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:10px;">
+                  <div class="press" style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:15px; box-shadow:0 2px 8px var(--shadow);"><div style="width:40px; height:40px; border-radius:11px; background:var(--primary-tint); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2"/><path d="M8 7h8M8 11h8"/></svg></div><div style="font-size:13px; font-weight:600; color:var(--ink); margin-top:9px;">Generate Bills</div><div style="font-size:11px; color:var(--mid); margin-top:1px;">847 houses</div></div>
+                  <div class="press" style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:15px; box-shadow:0 2px 8px var(--shadow);"><div style="width:40px; height:40px; border-radius:11px; background:var(--success-tint); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="1.8"><path d="m3 11 18-5v12L3 14v-3z"/></svg></div><div style="font-size:13px; font-weight:600; color:var(--ink); margin-top:9px;">Broadcast</div><div style="font-size:11px; color:var(--mid); margin-top:1px;">Notify residents</div></div>
+                  <div class="press" style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:15px; box-shadow:0 2px 8px var(--shadow);"><div style="width:40px; height:40px; border-radius:11px; background:var(--amber-tint); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.8"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/></svg></div><div style="font-size:13px; font-weight:600; color:var(--ink); margin-top:9px;">Complaints</div><div style="font-size:11px; color:var(--mid); margin-top:1px;">12 open</div></div>
+                  <div class="press" style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:15px; box-shadow:0 2px 8px var(--shadow);"><div style="width:40px; height:40px; border-radius:11px; background:var(--primary-tint); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8"><path d="M3 3v18h18"/><rect x="7" y="10" width="3" height="7"/><rect x="13" y="6" width="3" height="11"/></svg></div><div style="font-size:13px; font-weight:600; color:var(--ink); margin-top:9px;">Analytics</div><div style="font-size:11px; color:var(--mid); margin-top:1px;">Reports</div></div>
+                </div>
+
+                <div style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:15px; margin-top:14px; box-shadow:0 2px 8px var(--shadow);">
+                  <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8"><path d="M12 3v12M8 7l4-4 4 4"/></svg><span style="font-size:12px; font-weight:700; color:var(--primary);">AI INSIGHT · Community Mood</span></div>
+                  <div style="display:flex; align-items:center; gap:12px;"><div style="font-size:30px;">😊</div><div style="flex:1;"><div style="font-size:13px; font-weight:600; color:var(--ink);">72% positive this week</div><div style="font-size:12px; color:var(--mid); margin-top:2px; line-height:1.4;">Top topic: solar poll &amp; Eid event. Sentiment up 8% vs last week.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- ::APPEND_SCREENS:: -->
+
+        </div>
+
+        <!-- bottom nav -->
+        <sc-if value="{{ showNav }}">
+          <div style="position:absolute; bottom:0; left:0; right:0; height:84px; background:var(--surface); border-top:1px solid var(--border); display:flex; align-items:flex-start; justify-content:space-around; padding-top:11px; box-shadow:0 -6px 20px var(--shadow); z-index:40;">
+            <div data-tab="home" onClick="{{ tabNav }}" class="press" style="display:flex; flex-direction:column; align-items:center; gap:4px; flex:1;"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="{{ cHome }}" stroke-width="1.9"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span style="font-size:10.5px; font-weight:600; color:{{ cHome }};">Home</span></div>
+            <div data-tab="community" onClick="{{ tabNav }}" class="press" style="display:flex; flex-direction:column; align-items:center; gap:4px; flex:1;"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="{{ cCommunity }}" stroke-width="1.9"><path d="M3 6h18M3 12h18M3 18h12"/></svg><span style="font-size:10.5px; font-weight:600; color:{{ cCommunity }};">Community</span></div>
+            <div data-tab="sos" onClick="{{ tabNav }}" class="press" style="display:flex; flex-direction:column; align-items:center; flex:1; position:relative;"><div style="width:54px; height:54px; border-radius:50%; background:var(--danger); display:flex; align-items:center; justify-content:center; margin-top:-26px; box-shadow:0 8px 20px rgba(191,59,43,.5); border:4px solid var(--surface); animation:sosPulse 2.2s infinite;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M7 18v-6a5 5 0 0 1 10 0v6"/><path d="M5 18h14M9 22h6"/></svg></div><span style="font-size:10.5px; font-weight:700; color:var(--danger); margin-top:3px;">SOS</span></div>
+            <div data-tab="notices" onClick="{{ tabNav }}" class="press" style="display:flex; flex-direction:column; align-items:center; gap:4px; flex:1;"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="{{ cNotices }}" stroke-width="1.9"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg><span style="font-size:10.5px; font-weight:600; color:{{ cNotices }};">Notices</span></div>
+            <div data-tab="profile" onClick="{{ tabNav }}" class="press" style="display:flex; flex-direction:column; align-items:center; gap:4px; flex:1;"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="{{ cProfile }}" stroke-width="1.9"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg><span style="font-size:10.5px; font-weight:600; color:{{ cProfile }};">Me</span></div>
+          </div>
+        </sc-if>
+
+        <!-- home indicator -->
+        <div style="position:absolute; bottom:7px; left:50%; transform:translateX(-50%); width:128px; height:5px; border-radius:3px; background:{{ statusColor }}; opacity:.32; z-index:70; pointer-events:none;"></div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== NAVIGATOR PANEL ===================== -->
+  <div style="flex:0 0 232px; position:sticky; top:40px; color:#cfc6bb; font-family:'Poppins',sans-serif;">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;">
+      <div style="width:30px; height:30px; border-radius:8px; background:#fff; display:flex; align-items:center; justify-content:center; overflow:hidden;"><img src="assets/logo.png" alt="" style="width:26px; height:26px; object-fit:contain;"/></div>
+      <div style="font-size:14px; font-weight:700; color:#fff;">WAPDA City App</div>
+    </div>
+    <div style="font-size:11px; color:#8a8175; margin-bottom:16px; line-height:1.5;">Interactive prototype — tap inside the phone to navigate, or jump to any screen below.</div>
+
+    <div onClick="{{ toggleTheme }}" class="press" style="display:flex; align-items:center; justify-content:space-between; background:#37312a; border:1px solid #4a4239; border-radius:12px; padding:11px 14px; cursor:pointer; margin-bottom:18px;">
+      <span style="font-size:13px; font-weight:600; color:#fff;">{{ themeLabel }} mode</span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D97757" stroke-width="1.8"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></svg>
+    </div>
+
+    <div style="font-size:10px; font-weight:700; color:#8a8175; letter-spacing:1px; margin-bottom:8px;">ONBOARDING</div>
+    <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px;">
+      <span data-jump="splash" onClick="{{ jump }}" class="press" style="font-size:11.5px; background:#37312a; color:#d8cfc3; padding:6px 11px; border-radius:8px; cursor:pointer;">Splash</span>
+      <span data-jump="welcome" onClick="{{ jump }}" class="press" style="font-size:11.5px; background:#37312a; color:#d8cfc3; padding:6px 11px; border-radius:8px; cursor:pointer;">Welcome</span>
+      <span data-jump="login" onClick="{{ jump }}" class="press" style="font-size:11.5px; background:#37312a; color:#d8cfc3; padding:6px 11px; border-radius:8px; cursor:pointer;">Login</span>
+      <span data-jump="register" onClick="{{ jump }}" class="press" style="font-size:11.5px; background:#37312a; color:#d8cfc3; padding:6px 11px; border-radius:8px; cursor:pointer;">Register</span>
+      <span data-jump="otp" onClick="{{ jump }}" class="press" style="font-size:11.5px; background:#37312a; color:#d8cfc3; padding:6px 11px; border-radius:8px; cursor:pointer;">OTP</span>
+      <span data-jump="pending" onClick="{{ jump }}" class="press" style="font-size:11.5px; background:#37312a; color:#d8cfc3; padding:6px 11px; border-radius:8px; cursor:pointer;">Pending</span>
+    </div>
+
+    <div style="font-size:10px; font-weight:700; color:#8a8175; letter-spacing:1px; margin-bottom:8px;">FEATURES</div>
+    <div data-jump-panel="features" style="display:flex; flex-wrap:wrap; gap:6px;">
+      <span data-jump="home" onClick="{{ jump }}" class="press" style="font-size:11.5px; background:#4a3a30; color:#f0d9cc; padding:6px 11px; border-radius:8px; cursor:pointer;">Home</span>
+      <span data-jump="bills" onClick="{{ jump }}" class="press" style="font-size:11.5px; background:#37312a; color:#d8cfc3; padding:6px 11px; border-radius:8px; cursor:pointer;">Charges</span>
+      <span data-jump="complaints" onClick="{{ jump }}" class="press" style="font-size:11.5px; background:#37312a; color:#d8cfc3; padding:6px 11px; border-radius:8px; cursor:pointer;">Complaints</span>
+      <span data-jump="notices" onClick="{{ jump }}" class="press" style="font-size:11.5px; background:#37312a; color:#d8cfc3; padding:6px 11px; border-radius:8px; cursor:pointer;">Notices</span>
+      <span data-jump="events" onClick="{{ jump }}" class="press" style="font-size:11.5px; background:#37312a; color:#d8cfc3; padding:6px 11px; border-radius:8px; cursor:pointer;">Events</span>
+      <span data-jump="media" onClick="{{ jump }}" class="press" style="font-size:11.5px; background:#37312a; color:#d8cfc3; padding:6px 11px; border-radius:8px; cursor:pointer;">Media</span>
+      <span data-jump="sos" onClick="{{ jump }}" class="press" style="font-size:11.5px; background:#37312a; color:#d8cfc3; padding:6px 11px; border-radius:8px; cursor:pointer;">SOS</span>
+      <span data-jump="visitors" onClick="{{ jump }}" class="press" style="font-size:11.5px; background:#37312a; color:#d8cfc3; padding:6px 11px; border-radius:8px; cursor:pointer;">Visitors</span>
+      <span data-jump="community" onClick="{{ jump }}" class="press" style="font-size:11.5px; background:#37312a; color:#d8cfc3; padding:6px 11px; border-radius:8px; cursor:pointer;">Community</span>
+      <span data-jump="polls" onClick="{{ jump }}" class="press" style="font-size:11.5px; background:#37312a; color:#d8cfc3; padding:6px 11px; border-radius:8px; cursor:pointer;">Polls</span>
+      <span data-jump="directory" onClick="{{ jump }}" class="press" style="font-size:11.5px; background:#37312a; color:#d8cfc3; padding:6px 11px; border-radius:8px; cursor:pointer;">Directory</span>
+      <span data-jump="labour" onClick="{{ jump }}" class="press" style="font-size:11.5px; background:#37312a; color:#d8cfc3; padding:6px 11px; border-radius:8px; cursor:pointer;">Labour</span>
+      <span data-jump="notifications" onClick="{{ jump }}" class="press" style="font-size:11.5px; background:#37312a; color:#d8cfc3; padding:6px 11px; border-radius:8px; cursor:pointer;">Alerts</span>
+      <span data-jump="profile" onClick="{{ jump }}" class="press" style="font-size:11.5px; background:#37312a; color:#d8cfc3; padding:6px 11px; border-radius:8px; cursor:pointer;">Profile</span>
+      <span data-jump="mcDashboard" onClick="{{ jump }}" class="press" style="font-size:11.5px; background:#4a3a30; color:#f0d9cc; padding:6px 11px; border-radius:8px; cursor:pointer;">MC Panel</span>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:700,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { screen:'splash', tab:'home', dark:false, stack:[], billTab:'pending', community:'feed' };
+
+  componentDidMount(){
+    this._t = setTimeout(()=>{
+      this.setState(s => s.screen==='splash' ? { screen:'welcome', stack:[] } : {});
+    }, 2400);
+  }
+  componentWillUnmount(){ clearTimeout(this._t); }
+
+  _root(sc){ return ['home','community','sos','notices','profile'].includes(sc); }
+  _tabFor(sc){ return ({home:'home',community:'community',sos:'sos',notices:'notices',profile:'profile'})[sc] || this.state.tab; }
+
+  nav = (e)=>{
+    const t = e.currentTarget.dataset.screen; if(!t) return;
+    this.setState(s => ({ stack:[...s.stack, s.screen], screen:t, tab: this._root(t)? this._tabFor(t) : s.tab }));
+  };
+  back = ()=>{
+    this.setState(s => { const st=[...s.stack]; const p=st.pop(); return { screen: p || 'home', stack: st }; });
+  };
+  tabNav = (e)=>{
+    const t = e.currentTarget.dataset.tab;
+    const sc = ({home:'home',community:'community',sos:'sos',notices:'notices',profile:'profile'})[t];
+    this.setState({ tab:t, screen:sc, stack:[] });
+  };
+  jump = (e)=>{
+    const t = e.currentTarget.dataset.jump;
+    this.setState({ screen:t, stack:[], tab: this._root(t)? this._tabFor(t) : this.state.tab });
+  };
+  toggleTheme = ()=> this.setState(s => ({ dark: !s.dark }));
+  setBillTab = (e)=> this.setState({ billTab: e.currentTarget.dataset.billtab });
+  setCommunity = (e)=> this.setState({ community: e.currentTarget.dataset.mode });
+
+  renderVals(){
+    const s = this.state;
+    const names = ['splash','welcome','login','register','otp','pending','home','bills','billDetail','payMethod','paySuccess','complaints','fileComplaint','complaintDetail','notices','noticeDetail','events','eventDetail','media','sos','visitors','visitorPass','community','listingDetail','polls','pollResults','directory','labour','notifications','profile','settings','mcDashboard'];
+    const v = {};
+    names.forEach(n => v['s_'+n] = s.screen===n);
+    const grad = ['splash','welcome','sos','home','paySuccess','profile','eventDetail','mcDashboard'].includes(s.screen);
+    v.statusColor = grad ? '#FFFFFF' : 'var(--ink)';
+    v.showNav = this._root(s.screen);
+    v.themeClass = s.dark ? 'theme-dark' : 'theme-light';
+    v.themeLabel = s.dark ? 'Light' : 'Dark';
+    const c = (t)=> s.tab===t ? 'var(--primary)' : 'var(--nav-idle)';
+    v.cHome=c('home'); v.cCommunity=c('community'); v.cNotices=c('notices'); v.cProfile=c('profile');
+    const bt = s.billTab;
+    v.btP_c = bt==='pending'?'var(--primary)':'var(--mid)'; v.btP_bg = bt==='pending'?'var(--surface)':'transparent';
+    v.btD_c = bt==='paid'?'var(--primary)':'var(--mid)'; v.btD_bg = bt==='paid'?'var(--surface)':'transparent';
+    v.btA_c = bt==='all'?'var(--primary)':'var(--mid)'; v.btA_bg = bt==='all'?'var(--surface)':'transparent';
+    v.billShowPending = bt==='pending'||bt==='all';
+    v.billShowPaid = bt==='paid'||bt==='all';
+    v.modeFeed = s.community==='feed'; v.modeMarket = s.community==='market';
+    v.comFeed_c = s.community==='feed'?'var(--primary)':'var(--mid)'; v.comFeed_bg = s.community==='feed'?'var(--surface)':'transparent';
+    v.comMarket_c = s.community==='market'?'var(--primary)':'var(--mid)'; v.comMarket_bg = s.community==='market'?'var(--surface)':'transparent';
+    v.nav=this.nav; v.back=this.back; v.tabNav=this.tabNav; v.jump=this.jump;
+    v.toggleTheme=this.toggleTheme; v.setBillTab=this.setBillTab; v.setCommunity=this.setCommunity;
+    return v;
+  }
+}
+</script>
+</body>
+</html>

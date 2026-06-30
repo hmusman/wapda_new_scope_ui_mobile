@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="tg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5E2419"/><stop offset="0.55" stop-color="#A8431F"/><stop offset="1" stop-color="#C76A31"/></linearGradient></defs><rect width="100" height="100" rx="20" fill="url(#tg)"/><rect x="32" y="22" width="36" height="56" rx="6" fill="#FBF7F0"/><rect x="38" y="30" width="24" height="4" rx="2" fill="#C0512B"/><rect x="38" y="40" width="24" height="3" rx="1.5" fill="#A99B8B"/><rect x="38" y="47" width="24" height="3" rx="1.5" fill="#A99B8B"/><rect x="38" y="54" width="16" height="3" rx="1.5" fill="#A99B8B"/><circle cx="50" cy="68" r="4" fill="#5C8A6A"/></svg></template>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing:border-box; }
+  body { margin:0; background:#E9E1D4; font-family:'Poppins',system-ui,sans-serif; color:#2A2420; }
+  .doc { box-sizing:border-box; max-width:8.5in; margin:0 auto; background:#FBF7F0; padding:0 0 96px; box-shadow:0 8px 40px rgba(70,45,25,.12); }
+  .doc-frame { width:100%; border-collapse:collapse; }
+  .doc-frame td { padding:0; }
+  .hdr-space, .ftr-space { display:none; }
+  .body-pad { padding:0 clamp(24px,5vw,0.8in); }
+
+  h1,h2,h3,h4 { text-wrap:balance; color:#2A2420; }
+  p,li { text-wrap:pretty; line-height:1.65; }
+  h2 { font-size:21px; font-weight:700; margin:0 0 4px; letter-spacing:-.2px; }
+  h3 { font-size:15.5px; font-weight:700; margin:0 0 6px; color:#5E2419; }
+  .sec-num { font-family:'Newsreader',serif; font-size:13px; font-weight:600; color:#C0512B; letter-spacing:.5px; }
+  .lede { font-size:14px; color:#6E6155; margin:2px 0 0; }
+  .rule { height:1px; background:#E0D6C6; border:0; margin:0; }
+  .kicker { font-size:11px; font-weight:700; letter-spacing:1.5px; color:#C0512B; text-transform:uppercase; }
+  .muted { color:#6E6155; }
+  .small { font-size:12.5px; }
+  .tag { display:inline-block; font-size:10.5px; font-weight:700; letter-spacing:.4px; padding:3px 9px; border-radius:20px; }
+
+  table.matrix { width:100%; border-collapse:collapse; font-size:11.5px; margin-top:6px; }
+  table.matrix th, table.matrix td { border:1px solid #E0D6C6; padding:8px 7px; text-align:center; }
+  table.matrix th { background:#5E2419; color:#fff; font-weight:600; font-size:11px; }
+  table.matrix td:first-child, table.matrix th:first-child { text-align:left; font-weight:600; background:#F4ECDD; }
+  table.matrix tr:nth-child(even) td { background:#FFFDF9; }
+
+  @page { size:letter; margin:0; }
+  @media print {
+    html { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    html,body { margin:0; padding:0; background:#fff; }
+    .doc { max-width:none !important; margin:0 !important; padding:0 !important; box-shadow:none !important; background:#fff; }
+    .body-pad { padding:0 0.7in !important; }
+    .hdr-space,.ftr-space { display:table-cell; height:0.55in; }
+    h1,h2,h3,h4 { break-after:avoid; }
+    .card,.tile,.rolecard,.flowstep,.callout,figure,tr,.feat { break-inside:avoid; }
+    p,li { orphans:3; widows:3; }
+    .screen-only { display:none !important; }
+    .cover { break-after:page; }
+  }
+</style>
+</helmet>
+<main class="doc">
+  <table class="doc-frame" role="presentation">
+    <thead><tr><td class="hdr-space"></td></tr></thead>
+    <tbody><tr><td>
+
+      <!-- ===== COVER ===== -->
+      <div class="cover" style="background:linear-gradient(150deg,#5E2419 0%,#A8431F 55%,#C76A31 100%); padding:54px clamp(24px,5vw,0.8in) 46px; color:#fff;">
+        <div style="display:flex; align-items:center; gap:14px;">
+          <div style="width:54px; height:54px; border-radius:14px; background:#fff; display:flex; align-items:center; justify-content:center; overflow:hidden; flex-shrink:0;"><img src="assets/logo.png" alt="WAPDA City" style="width:46px; height:46px; object-fit:contain;"/></div>
+          <div>
+            <div style="font-size:15px; font-weight:600; letter-spacing:.3px;">WAPDA City Housing Society</div>
+            <div style="font-size:12px; opacity:.8;">Faisalabad, Pakistan</div>
+          </div>
+          <div style="margin-left:auto; text-align:right; font-size:11.5px; opacity:.85;">Version 2.0<br>Product Scope</div>
+        </div>
+        <div style="font-size:38px; font-weight:800; letter-spacing:-1px; line-height:1.08; margin-top:38px;">Resident App —<br>Scope &amp; Flow Document</div>
+        <p style="font-size:15px; opacity:.9; max-width:560px; margin:16px 0 0; line-height:1.6;">A complete redefinition of the WAPDA City mobile application: five user roles, their registration journeys, the simplified information architecture, every feature's behaviour, and a role-based access map — synthesised from the original design brief and the client's verbal survey.</p>
+        <div style="display:flex; gap:10px; margin-top:30px; flex-wrap:wrap;">
+          <span style="font-size:11.5px; font-weight:600; background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.28); padding:7px 14px; border-radius:22px;">5 User Roles</span>
+          <span style="font-size:11.5px; font-weight:600; background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.28); padding:7px 14px; border-radius:22px;">6 Dashboard Features</span>
+          <span style="font-size:11.5px; font-weight:600; background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.28); padding:7px 14px; border-radius:22px;">5 Quick-Nav Actions</span>
+          <span style="font-size:11.5px; font-weight:600; background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.28); padding:7px 14px; border-radius:22px;">Elder-Friendly UX</span>
+        </div>
+      </div>
+
+      <!-- ===== 01 EXECUTIVE SUMMARY ===== -->
+      <div class="body-pad" style="padding-top:40px;">
+        <div class="sec-num">01</div>
+        <h2>Executive Summary</h2>
+        <p class="lede">Why we are rebuilding, and what changes.</p>
+        <div class="rule" style="margin:16px 0 20px;"></div>
+        <p style="font-size:14.5px; margin:0;">The first version of the WAPDA City app <strong>failed in adoption</strong> — residents found the interface complex, cluttered and confusing, and abandoned it. Version 2.0 treats <strong>simplicity as the primary requirement</strong>, not a nice-to-have. Every screen is designed for a non-technical audience spanning all age groups, including elderly and less-literate residents, using a large, icon-led, block-based layout with generous spacing and a calm, warm palette.</p>
+
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:22px;">
+          <div class="tile" style="background:#fff; border:1px solid #E8DFD0; border-radius:14px; padding:16px;">
+            <div style="font-size:28px; font-weight:800; color:#C0512B;">≤ 3</div>
+            <div class="small muted" style="margin-top:2px;">taps to reach any core task</div>
+          </div>
+          <div class="tile" style="background:#fff; border:1px solid #E8DFD0; border-radius:14px; padding:16px;">
+            <div style="font-size:28px; font-weight:800; color:#5C8A6A;">11</div>
+            <div class="small muted" style="margin-top:2px;">primary entry points (6 tiles + 5 nav)</div>
+          </div>
+          <div class="tile" style="background:#fff; border:1px solid #E8DFD0; border-radius:14px; padding:16px;">
+            <div style="font-size:28px; font-weight:800; color:#B7822A;">1</div>
+            <div class="small muted" style="margin-top:2px;">shared experience for owners &amp; family</div>
+          </div>
+        </div>
+
+        <div class="callout" style="display:flex; gap:13px; background:#F6E7DE; border-radius:14px; padding:15px 17px; margin-top:20px;">
+          <div style="width:30px; height:30px; border-radius:9px; background:#C0512B; flex-shrink:0; display:flex; align-items:center; justify-content:center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1V18h6v-1.2c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"/></svg></div>
+          <p class="small" style="margin:0; color:#5E2419;"><strong>Design north-star:</strong> if a 60-year-old resident who has never used a banking app can pay their monthly charge and file a complaint without help, the design has succeeded. Clarity beats cleverness on every screen.</p>
+        </div>
+      </div>
+
+      <!-- ===== 02 USER ROLES ===== -->
+      <div class="body-pad" style="padding-top:38px;">
+        <div class="sec-num">02</div>
+        <h2>The Five User Roles</h2>
+        <p class="lede">Each role has its own registration path and access level. Owners and family members share an identical in-app experience; tenants, employees and the MC differ.</p>
+        <div class="rule" style="margin:16px 0 20px;"></div>
+
+        <!-- Role 1: Member -->
+        <div class="rolecard" style="background:#fff; border:1px solid #E8DFD0; border-left:5px solid #C0512B; border-radius:14px; padding:18px; margin-bottom:13px;">
+          <div style="display:flex; align-items:center; gap:11px;">
+            <span class="tag" style="background:#F6E7DE; color:#C0512B;">ROLE 1 · CORE</span>
+            <h3 style="margin:0; color:#2A2420; font-size:16px;">Member <span class="muted" style="font-weight:500;">(Resident / Owner)</span></h3>
+          </div>
+          <p class="small" style="margin:9px 0 0;">The primary user — the registered property owner. Receives the full, unrestricted app experience including service-charge payment.</p>
+          <div style="margin-top:11px; padding:11px 13px; background:#FBF7F0; border-radius:10px;">
+            <div class="kicker" style="font-size:10px; margin-bottom:5px;">Registration</div>
+            <p class="small" style="margin:0;">Select <strong>property number</strong> → OTP sent to the number registered against that property → sign up with <strong>name, email</strong> (both required) and <strong>profile picture</strong> (optional).</p>
+          </div>
+        </div>
+
+        <!-- Role 2: Family Member -->
+        <div class="rolecard" style="background:#fff; border:1px solid #E8DFD0; border-left:5px solid #B7822A; border-radius:14px; padding:18px; margin-bottom:13px;">
+          <div style="display:flex; align-items:center; gap:11px;">
+            <span class="tag" style="background:#F5EAD3; color:#946514;">ROLE 2 · CORE</span>
+            <h3 style="margin:0; color:#2A2420; font-size:16px;">Family Member</h3>
+          </div>
+          <p class="small" style="margin:9px 0 0;">A family member of a Member. Identical full app access to the owner. Distinguished only by their stated relationship.</p>
+          <div style="margin-top:11px; padding:11px 13px; background:#FBF7F0; border-radius:10px;">
+            <div class="kicker" style="font-size:10px; margin-bottom:5px;">Registration · relayed OTP</div>
+            <p class="small" style="margin:0;">Enter <strong>property number</strong> → OTP is forwarded to the <strong>owner's registered mobile</strong> → the family member enters that OTP (read from the owner's phone) → fills <strong>name, email, mobile</strong> and <strong>relationship</strong> with the owner (brother / sister / son / etc.).</p>
+          </div>
+        </div>
+
+        <!-- Role 3: Tenant -->
+        <div class="rolecard" style="background:#fff; border:1px solid #E8DFD0; border-left:5px solid #5C8A6A; border-radius:14px; padding:18px; margin-bottom:13px;">
+          <div style="display:flex; align-items:center; gap:11px;">
+            <span class="tag" style="background:#E6EFE7; color:#3F6B50;">ROLE 3</span>
+            <h3 style="margin:0; color:#2A2420; font-size:16px;">Tenant</h3>
+          </div>
+          <p class="small" style="margin:9px 0 0;">A resident renting the property. Full app access <strong>except</strong> service-charge challan payment and its payment record — every other feature is available.</p>
+          <div style="margin-top:11px; padding:11px 13px; background:#FBF7F0; border-radius:10px;">
+            <div class="kicker" style="font-size:10px; margin-bottom:5px;">Registration · relayed OTP</div>
+            <p class="small" style="margin:0;">Enter <strong>property number</strong> → OTP forwarded to the <strong>owner's mobile</strong> → enter that OTP → fill <strong>name, mobile, email</strong> and <strong>picture</strong> (optional).</p>
+          </div>
+        </div>
+
+        <!-- Role 4: Employee -->
+        <div class="rolecard" style="background:#fff; border:1px solid #E8DFD0; border-left:5px solid #3E6B7A; border-radius:14px; padding:18px; margin-bottom:13px;">
+          <div style="display:flex; align-items:center; gap:11px;">
+            <span class="tag" style="background:#E2EDF1; color:#2E5160;">ROLE 4 · STAFF</span>
+            <h3 style="margin:0; color:#2A2420; font-size:16px;">WC Employee</h3>
+          </div>
+          <p class="small" style="margin:9px 0 0;">Society staff with <strong>tiered access levels</strong> — some can only read &amp; resolve complaints, others have broad access (but never financial challan submission). Employees scan visitor QR codes at gates, view visitor logs, read &amp; resolve complaints, and view events with their attendee lists.</p>
+          <div style="margin-top:11px; padding:11px 13px; background:#FBF7F0; border-radius:10px;">
+            <div class="kicker" style="font-size:10px; margin-bottom:5px;">Registration</div>
+            <p class="small" style="margin:0;">Enter <strong>HR ID / Employee ID</strong> → OTP sent to their registered mobile → access scoped to their assigned level.</p>
+          </div>
+        </div>
+
+        <!-- Role 5: MC -->
+        <div class="rolecard" style="background:#fff; border:1px solid #E8DFD0; border-left:5px solid #5E2419; border-radius:14px; padding:18px;">
+          <div style="display:flex; align-items:center; gap:11px;">
+            <span class="tag" style="background:#5E2419; color:#fff;">ROLE 5 · ADMIN</span>
+            <h3 style="margin:0; color:#2A2420; font-size:16px;">MC <span class="muted" style="font-weight:500;">(Management Committee)</span></h3>
+          </div>
+          <p class="small" style="margin:9px 0 0;">The ~6 governing members of the society. The only role that can <strong>create</strong> events, polls, notices and notifications, and the only role that <strong>approves</strong> directory and labour listings.</p>
+          <ul class="small" style="margin:10px 0 0; padding-left:18px;">
+            <li>View any resident's payment record</li>
+            <li>Read all complaints and change their status</li>
+            <li>Create &amp; manage notices, events, polls, notifications</li>
+            <li>Add, view and remove any media</li>
+            <li>Create any visitor and browse the full visitor log with date/time filters</li>
+            <li>Approve Local Directory profiles &amp; approve labour for the public Service-Providers directory</li>
+          </ul>
+        </div>
+
+        <div class="callout small" style="margin-top:16px; padding:12px 15px; background:#F4ECDD; border-radius:12px; color:#5E2419;"><strong>Common to all roles —</strong> the Profile section lets any user optionally add <strong>gender, date of birth</strong> and <strong>blood group</strong>. These are never mandatory at registration.</div>
+      </div>
+
+      <!-- ===== 03 REGISTRATION FLOWS ===== -->
+      <div class="body-pad" style="padding-top:38px;">
+        <div class="sec-num">03</div>
+        <h2>Registration &amp; Authentication</h2>
+        <p class="lede">Property-anchored identity. The owner's phone is the trust root for everyone living in that property.</p>
+        <div class="rule" style="margin:16px 0 20px;"></div>
+
+        <h3>A · Owner / Member &amp; Employee — direct OTP</h3>
+        <div style="display:flex; gap:9px; flex-wrap:wrap; margin:10px 0 22px;">
+          <div class="flowstep" style="flex:1; min-width:130px; background:#fff; border:1px solid #E8DFD0; border-radius:12px; padding:13px;"><div style="font-size:11px; font-weight:700; color:#C0512B;">STEP 1</div><div class="small" style="margin-top:3px;">Enter property number (Member) or HR/Employee ID (staff)</div></div>
+          <div style="display:flex; align-items:center; color:#C0512B; font-weight:700;">→</div>
+          <div class="flowstep" style="flex:1; min-width:130px; background:#fff; border:1px solid #E8DFD0; border-radius:12px; padding:13px;"><div style="font-size:11px; font-weight:700; color:#C0512B;">STEP 2</div><div class="small" style="margin-top:3px;">OTP sent to <strong>their own</strong> registered mobile</div></div>
+          <div style="display:flex; align-items:center; color:#C0512B; font-weight:700;">→</div>
+          <div class="flowstep" style="flex:1; min-width:130px; background:#fff; border:1px solid #E8DFD0; border-radius:12px; padding:13px;"><div style="font-size:11px; font-weight:700; color:#C0512B;">STEP 3</div><div class="small" style="margin-top:3px;">Complete profile → access granted</div></div>
+        </div>
+
+        <h3>B · Family Member &amp; Tenant — relayed OTP via owner</h3>
+        <div style="display:flex; gap:9px; flex-wrap:wrap; margin-top:10px;">
+          <div class="flowstep" style="flex:1; min-width:120px; background:#fff; border:1px solid #E8DFD0; border-radius:12px; padding:13px;"><div style="font-size:11px; font-weight:700; color:#B7822A;">STEP 1</div><div class="small" style="margin-top:3px;">Enter property number</div></div>
+          <div style="display:flex; align-items:center; color:#B7822A; font-weight:700;">→</div>
+          <div class="flowstep" style="flex:1; min-width:120px; background:#fff; border:1px solid #E8DFD0; border-radius:12px; padding:13px;"><div style="font-size:11px; font-weight:700; color:#B7822A;">STEP 2</div><div class="small" style="margin-top:3px;">OTP forwarded to the <strong>owner's</strong> mobile</div></div>
+          <div style="display:flex; align-items:center; color:#B7822A; font-weight:700;">→</div>
+          <div class="flowstep" style="flex:1; min-width:120px; background:#fff; border:1px solid #E8DFD0; border-radius:12px; padding:13px;"><div style="font-size:11px; font-weight:700; color:#B7822A;">STEP 3</div><div class="small" style="margin-top:3px;">Enter OTP (from owner's phone)</div></div>
+          <div style="display:flex; align-items:center; color:#B7822A; font-weight:700;">→</div>
+          <div class="flowstep" style="flex:1; min-width:120px; background:#fff; border:1px solid #E8DFD0; border-radius:12px; padding:13px;"><div style="font-size:11px; font-weight:700; color:#B7822A;">STEP 4</div><div class="small" style="margin-top:3px;">Fill role details (+ relationship for family)</div></div>
+        </div>
+        <p class="small muted" style="margin-top:14px;">This design ensures the owner is always aware of, and physically authorises, every additional person who joins under their property — a deliberate safeguard against unauthorised sign-ups.</p>
+      </div>
+
+      <!-- ===== 04 INFORMATION ARCHITECTURE ===== -->
+      <div class="body-pad" style="padding-top:38px;">
+        <div class="sec-num">04</div>
+        <h2>Information Architecture</h2>
+        <p class="lede">Six feature tiles on the dashboard, five quick actions in the bottom bar. Nothing more competes for attention.</p>
+        <div class="rule" style="margin:16px 0 20px;"></div>
+
+        <h3>Dashboard header</h3>
+        <ul class="small" style="margin:6px 0 18px; padding-left:18px;">
+          <li><strong>Top-left:</strong> WAPDA City logo + society name</li>
+          <li><strong>Top-right:</strong> profile icon and notification bell (with unread count)</li>
+          <li><strong>Greeting line:</strong> "Good Morning / Afternoon / Evening / Night" — chosen live from the device clock</li>
+          <li><strong>Identity line:</strong> user name, property details, and registration role (e.g. "Tenant", "Resident", "Family Member — Brother")</li>
+        </ul>
+
+        <h3>Six dashboard features</h3>
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:11px; margin:10px 0 22px;">
+          <div class="tile" style="background:#fff; border:1px solid #E8DFD0; border-radius:13px; padding:14px; text-align:center;"><div style="width:42px; height:42px; margin:0 auto 8px; border-radius:12px; background:#F6E7DE; display:flex; align-items:center; justify-content:center;"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#C0512B" stroke-width="1.8"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2"/><path d="M8 7h8M8 11h8"/></svg></div><div style="font-size:13px; font-weight:600;">Charges</div></div>
+          <div class="tile" style="background:#fff; border:1px solid #E8DFD0; border-radius:13px; padding:14px; text-align:center;"><div style="width:42px; height:42px; margin:0 auto 8px; border-radius:12px; background:#F5EAD3; display:flex; align-items:center; justify-content:center;"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#B7822A" stroke-width="1.8"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/></svg></div><div style="font-size:13px; font-weight:600;">Complaints</div></div>
+          <div class="tile" style="background:#fff; border:1px solid #E8DFD0; border-radius:13px; padding:14px; text-align:center;"><div style="width:42px; height:42px; margin:0 auto 8px; border-radius:12px; background:#E6EFE7; display:flex; align-items:center; justify-content:center;"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#5C8A6A" stroke-width="1.8"><path d="m3 11 18-5v12L3 14v-3z"/></svg></div><div style="font-size:13px; font-weight:600;">Notices</div></div>
+          <div class="tile" style="background:#fff; border:1px solid #E8DFD0; border-radius:13px; padding:14px; text-align:center;"><div style="width:42px; height:42px; margin:0 auto 8px; border-radius:12px; background:#F6E7DE; display:flex; align-items:center; justify-content:center;"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#C0512B" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div><div style="font-size:13px; font-weight:600;">Directory</div></div>
+          <div class="tile" style="background:#fff; border:1px solid #E8DFD0; border-radius:13px; padding:14px; text-align:center;"><div style="width:42px; height:42px; margin:0 auto 8px; border-radius:12px; background:#F5EAD3; display:flex; align-items:center; justify-content:center;"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#B7822A" stroke-width="1.8"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg></div><div style="font-size:13px; font-weight:600;">Visitors</div></div>
+          <div class="tile" style="background:#fff; border:1px solid #E8DFD0; border-radius:13px; padding:14px; text-align:center;"><div style="width:42px; height:42px; margin:0 auto 8px; border-radius:12px; background:#E6EFE7; display:flex; align-items:center; justify-content:center;"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#5C8A6A" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></div><div style="font-size:13px; font-weight:600;">Events</div></div>
+        </div>
+        <p class="small muted" style="margin:-8px 0 18px;">Note — <strong>Directory</strong> is a single tile that opens to two tabs: <em>Local Directory</em> (resident professionals) and <em>Service Providers</em> (skilled labour). Service providers are no longer a separate dashboard entry.</p>
+
+        <h3>Bottom navigation — five actions</h3>
+        <div style="background:#fff; border:1px solid #E8DFD0; border-radius:16px; padding:16px; display:flex; align-items:flex-end; justify-content:space-around; margin-top:10px;">
+          <div style="text-align:center;"><div style="width:38px; height:38px; margin:0 auto; border-radius:11px; background:#FBF7F0; display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6E6155" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg></div><div style="font-size:11px; margin-top:5px; color:#6E6155;">Media</div></div>
+          <div style="text-align:center;"><div style="width:38px; height:38px; margin:0 auto; border-radius:11px; background:#FBF7F0; display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6E6155" stroke-width="1.8"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div><div style="font-size:11px; margin-top:5px; color:#6E6155;">Home</div></div>
+          <div style="text-align:center;"><div style="width:50px; height:50px; margin:0 auto -4px; border-radius:50%; background:#BF3B2B; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 16px rgba(191,59,43,.4);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M7 18v-6a5 5 0 0 1 10 0v6"/><path d="M5 18h14M9 22h6"/></svg></div><div style="font-size:11px; margin-top:8px; color:#BF3B2B; font-weight:700;">SOS</div></div>
+          <div style="text-align:center;"><div style="width:38px; height:38px; margin:0 auto; border-radius:11px; background:#FBF7F0; display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6E6155" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h12"/></svg></div><div style="font-size:11px; margin-top:5px; color:#6E6155;">Community</div></div>
+          <div style="text-align:center;"><div style="width:38px; height:38px; margin:0 auto; border-radius:11px; background:#FBF7F0; display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6E6155" stroke-width="1.8"><path d="M3 3v18h18"/><rect x="7" y="10" width="3" height="7"/><rect x="13" y="6" width="3" height="11"/></svg></div><div style="font-size:11px; margin-top:5px; color:#6E6155;">Polls</div></div>
+        </div>
+        <p class="small muted" style="margin-top:12px;">Order, left → right: <strong>Media · Home · SOS (centre, raised) · Community · Polls.</strong> SOS is always the centre thumb-target so it is reachable instantly in an emergency.</p>
+      </div>
+
+      <!-- ===== 05 ACCESS MATRIX ===== -->
+      <div class="body-pad" style="padding-top:38px;">
+        <div class="sec-num">05</div>
+        <h2>Role-Based Access Matrix</h2>
+        <p class="lede">✓ full · ◐ partial / conditional · ✕ none. Employee access varies by assigned level.</p>
+        <div class="rule" style="margin:16px 0 16px;"></div>
+        <table class="matrix">
+          <thead><tr><th style="width:30%;">Capability</th><th>Member</th><th>Family</th><th>Tenant</th><th>Employee</th><th>MC</th></tr></thead>
+          <tbody>
+            <tr><td>View / pay service charges</td><td>✓</td><td>✓</td><td>✕</td><td>✕</td><td>✓*</td></tr>
+            <tr><td>View any resident's payment record</td><td>✕</td><td>✕</td><td>✕</td><td>✕</td><td>✓</td></tr>
+            <tr><td>File a complaint</td><td>✓</td><td>✓</td><td>✓</td><td>✕</td><td>✓</td></tr>
+            <tr><td>Resolve / change complaint status</td><td>✕</td><td>✕</td><td>✕</td><td>◐</td><td>✓</td></tr>
+            <tr><td>View notices</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+            <tr><td>Create notices / notifications</td><td>✕</td><td>✕</td><td>✕</td><td>✕</td><td>✓</td></tr>
+            <tr><td>View events &amp; RSVP</td><td>✓</td><td>✓</td><td>✓</td><td>◐</td><td>✓</td></tr>
+            <tr><td>Create events</td><td>✕</td><td>✕</td><td>✕</td><td>✕</td><td>✓</td></tr>
+            <tr><td>View media</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+            <tr><td>Add / remove media</td><td>✕</td><td>✕</td><td>✕</td><td>✕</td><td>✓</td></tr>
+            <tr><td>Invite / view own visitors</td><td>✓</td><td>✓</td><td>✓</td><td>✕</td><td>✓</td></tr>
+            <tr><td>Scan visitor QR at gate</td><td>✕</td><td>✕</td><td>✕</td><td>✓</td><td>✓</td></tr>
+            <tr><td>View full visitor log (filters)</td><td>✕</td><td>✕</td><td>✕</td><td>✓</td><td>✓</td></tr>
+            <tr><td>Community — post / react / comment</td><td>✓</td><td>✓</td><td>✓</td><td>◐</td><td>✓</td></tr>
+            <tr><td>Vote in polls</td><td>✓</td><td>✓</td><td>✓</td><td>◐</td><td>✓</td></tr>
+            <tr><td>Create polls</td><td>✕</td><td>✕</td><td>✕</td><td>✕</td><td>✓</td></tr>
+            <tr><td>List self in Local Directory</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+            <tr><td>Approve directory / labour listings</td><td>✕</td><td>✕</td><td>✕</td><td>✕</td><td>✓</td></tr>
+            <tr><td>SOS emergency</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+          </tbody>
+        </table>
+        <p class="small muted" style="margin-top:10px;">* MC views records for governance; they do not pay on residents' behalf. Employees never submit financial challans regardless of level.</p>
+      </div>
+
+      <!-- ===== 06 FEATURE SCOPE ===== -->
+      <div class="body-pad" style="padding-top:38px;">
+        <div class="sec-num">06</div>
+        <h2>Feature Scope</h2>
+        <p class="lede">Behaviour of each feature for residents, family members and tenants. MC and Employee variations are noted inline.</p>
+        <div class="rule" style="margin:16px 0 22px;"></div>
+
+        <div class="feat" style="margin-bottom:20px;">
+          <h3>① Service Charges</h3>
+          <p class="small" style="margin:0;">Submit and view the current month's challan with a full cost breakdown by line item; view historical bills and reports; track paid / pending status. <span class="muted">MC can view any resident's record. Tenants and employees cannot access challan payment or its record.</span></p>
+        </div>
+
+        <div class="feat" style="margin-bottom:20px;">
+          <h3>② Complaints</h3>
+          <p class="small" style="margin:0;">File a complaint by selecting a <strong>predefined type</strong> and <strong>predefined title</strong>, adding a description and attaching photos or a PDF. On submission a <strong>resolution timer</strong> starts and a status timeline tracks progress until addressed. Closure shows the resolver's <strong>remarks plus any attachment</strong>. <span class="muted">Employees (by level) and MC read and change status.</span></p>
+        </div>
+
+        <div class="feat" style="margin-bottom:20px;">
+          <h3>③ Notices</h3>
+          <p class="small" style="margin:0;">Notices <strong>nag until read</strong>, shown with an unread / pending count. Users browse all notices and pinned notices; type is <strong>colour-coded</strong> — emergency, financial, entertainment, general. <span class="muted">Created by MC only.</span></p>
+        </div>
+
+        <div class="feat" style="margin-bottom:20px;">
+          <h3>④ Events</h3>
+          <p class="small" style="margin:0;">The current date plus the next 6 days appear as a strip on top, with a <strong>full calendar</strong> for future events. Each event card shows a banner, time, date, venue, RSVP, and an attendee count with profile pictures (name on hover). Tapping a card opens details where the user marks <strong>going / not going</strong>, updating the live attendee count. <span class="muted">Created by MC only; employees can view events and their attendee lists.</span></p>
+        </div>
+
+        <div class="feat" style="margin-bottom:20px;">
+          <h3>⑤ Media Hub</h3>
+          <p class="small" style="margin:0;">A repository of society office <strong>forms and PDFs</strong> (e.g. gas application, dispute form), event &amp; announcement <strong>images</strong>, and <strong>YouTube video links</strong> to watch in-app. <span class="muted">Managed (add / remove) by MC only.</span></p>
+        </div>
+
+        <div class="feat" style="margin-bottom:20px;">
+          <h3>⑥ Visitors</h3>
+          <p class="small" style="margin:0 0 8px;">View today's visitor list with details, and an <strong>Invite Guest</strong> button opening a form:</p>
+          <ul class="small" style="margin:0; padding-left:18px;">
+            <li>Guest name · date &amp; time (auto-picked) · gender (selectable)</li>
+            <li>Means of transport (bike / car / on foot) — if bike or car, ask <strong>number, colour, make</strong></li>
+            <li>Duration of stay — <strong>hours</strong> (0–24) or <strong>days</strong> (0–5). Beyond 5 days, show: <em>"Visit the society office for a permanent entry/exit pass."</em></li>
+            <li>Share via direct <strong>WhatsApp</strong> or a shareable <strong>PDF link</strong>; a <strong>QR</strong> is generated and passed on.</li>
+          </ul>
+          <p class="small muted" style="margin:8px 0 0;">When the QR is scanned at the gate, an automated visitor entry is logged with the invitee's name, gender, address and house number. Employees scan; MC can create any visitor and view the full filtered log.</p>
+        </div>
+
+        <div class="feat" style="margin-bottom:20px;">
+          <h3>⑦ Community</h3>
+          <p class="small" style="margin:0;">A social feed of text or image posts. Others react (Facebook-style: like, love, sad, angry, wow) and comment. Posts rank by <strong>engagement</strong>, with filters for date, time, sort order (LIFO / FIFO) and category — <strong>Help, Entertainment, Announcement</strong> and more. Post type is defined on creation.</p>
+        </div>
+
+        <div class="feat" style="margin-bottom:20px;">
+          <h3>⑧ Polls</h3>
+          <p class="small" style="margin:0;">Browse <strong>past polls</strong> with results and MC remarks; vote in <strong>active polls</strong> (one vote per person). Opening and closing times and the running vote count are shown. Every poll states clearly: <em>"Your vote is completely anonymous."</em> <span class="muted">Created by MC only.</span></p>
+        </div>
+
+        <div class="feat" style="margin-bottom:20px;">
+          <h3>⑨ Directory — two tabs</h3>
+          <p class="small" style="margin:0 0 8px;"><strong>Local Directory</strong> lists resident experts (doctors, engineers, scientists, hakeems, etc.) with name, degree, years of experience, gender and a <strong>Contact</strong> button that opens in-app chat. A floating <em>"Add yourself"</em> button collects: display name, display contact, gender, area of expertise, sub-domain, experience, speciality, currently practising (y/n &amp; where), best time to contact, off-hours, working hours, and a consent agreement to display.</p>
+          <p class="small" style="margin:0;"><strong>Service Providers</strong> lists skilled labour by category (All, Electricians, Carpenters, Plumbers, Domestic Workers, Quran Teachers, Tutors…), searchable by name, type, rating and experience. A <em>"List a worker"</em> form captures display name, age, gender, experience, average cost, availability, the uploader's experience with them, and rating/review. Listings show <strong>hire count</strong> (5×, 10× badges), rating and feedback; tapping <strong>Contact</strong> reveals the number, counts the interaction, and shows how many times the worker has been called (phone icon).</p>
+          <p class="small muted" style="margin:8px 0 0;">Both Local Directory profiles and Service-Provider listings require <strong>MC approval</strong> before they appear publicly.</p>
+        </div>
+
+        <div class="feat" style="margin-bottom:20px;">
+          <h3>⑩ SOS</h3>
+          <p class="small" style="margin:0;">One tap surfaces the <strong>nearest security guard</strong> to call directly; the call is diverted to the society hotline for help. Always reachable from the centre of the bottom bar.</p>
+        </div>
+
+        <div class="feat">
+          <h3>⑪ Me / Profile &amp; Settings</h3>
+          <p class="small" style="margin:0 0 6px;">Profile top shows counts: <strong>bills paid, complaints, events attended, pending notices</strong>. Below: name, address, role, member-since, gender, picture. Controls include notification enable/disable, settings, a <strong>Switch Panel</strong> button (for users holding multiple roles — e.g. an owner who is also an employee — to switch dashboards), and logout.</p>
+          <p class="small" style="margin:0;"><strong>Settings:</strong> push notifications · SOS alerts · language (English / اردو) · dark &amp; light mode · help &amp; support · about &amp; app version.</p>
+        </div>
+      </div>
+
+      <!-- ===== 07 DESIGN PRINCIPLES ===== -->
+      <div class="body-pad" style="padding-top:38px;">
+        <div class="sec-num">07</div>
+        <h2>Design Principles</h2>
+        <div class="rule" style="margin:16px 0 18px;"></div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <div class="card" style="background:#fff; border:1px solid #E8DFD0; border-radius:13px; padding:15px;"><h4 style="margin:0 0 5px; font-size:14px; color:#5E2419;">Minimal &amp; uncluttered</h4><p class="small muted" style="margin:0;">Only top-priority actions on each screen. Whitespace is a feature, not wasted space.</p></div>
+          <div class="card" style="background:#fff; border:1px solid #E8DFD0; border-radius:13px; padding:15px;"><h4 style="margin:0 0 5px; font-size:14px; color:#5E2419;">Icon &amp; block-based</h4><p class="small muted" style="margin:0;">Large tap targets with clear icons and labels, legible for elderly and less-literate residents.</p></div>
+          <div class="card" style="background:#fff; border:1px solid #E8DFD0; border-radius:13px; padding:15px;"><h4 style="margin:0 0 5px; font-size:14px; color:#5E2419;">Calm, warm palette</h4><p class="small muted" style="margin:0;">An elegant terracotta-and-cream system, easy on the eyes, with light &amp; dark modes.</p></div>
+          <div class="card" style="background:#fff; border:1px solid #E8DFD0; border-radius:13px; padding:15px;"><h4 style="margin:0 0 5px; font-size:14px; color:#5E2419;">Subtle role cues</h4><p class="small muted" style="margin:0;">A light accent shift distinguishes Member/Family, Tenant, Employee and MC experiences — owners and family stay identical.</p></div>
+        </div>
+      </div>
+
+      <!-- ===== 08 OPEN QUESTIONS ===== -->
+      <div class="body-pad" style="padding-top:38px;">
+        <div class="sec-num">08</div>
+        <h2>Open Questions for Sign-Off</h2>
+        <p class="lede">Points to confirm with the client before build.</p>
+        <div class="rule" style="margin:16px 0 18px;"></div>
+        <ol class="small" style="margin:0; padding-left:20px; line-height:1.9;">
+          <li>Exact Employee access <strong>levels/tiers</strong> and what each may do (complaint-only vs. broad).</li>
+          <li>Can <strong>Employees and MC post/comment</strong> in Community and vote in Polls, or only view? (shown as conditional above)</li>
+          <li>In-app <strong>chat</strong> scope — directory contact only, or society-wide?</li>
+          <li>Visitor pass beyond 5 days routes to the office — any in-app request, or fully manual?</li>
+          <li>Payment gateways to support at launch (JazzCash, Easypaisa, card, bank transfer).</li>
+          <li>Bottom-nav order confirmation: Media · Home · SOS · Community · Polls.</li>
+        </ol>
+
+        <div style="margin-top:30px; padding-top:18px; border-top:2px solid #5E2419; display:flex; align-items:center; gap:12px;">
+          <div style="width:34px; height:34px; border-radius:9px; background:#fff; border:1px solid #E8DFD0; display:flex; align-items:center; justify-content:center; overflow:hidden;"><img src="assets/logo.png" alt="" style="width:28px; height:28px; object-fit:contain;"/></div>
+          <div class="small muted">WAPDA City Housing Society · Resident App Scope &amp; Flow · v2.0 — prepared for client review.</div>
+        </div>
+      </div>
+
+    </td></tr></tbody>
+    <tfoot><tr><td class="ftr-space"></td></tr></tfoot>
+  </table>
+</main>
+</x-dc>
+</body>
+</html>
